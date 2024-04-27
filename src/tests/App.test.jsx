@@ -5,7 +5,7 @@ import App from '../App';
 describe('App', () => {
   it('renders correctly', () => {
     render(<App />);
-    const headerElement = screen.getByRole('heading');
+    const headerElement = screen.getByRole('heading', { name: /hello world/i });
     expect(headerElement).toBeInTheDocument();
   });
 });
