@@ -30,6 +30,7 @@ describe('Navbar', () => {
         <Navbar />
       </Router>
     );
+
     const expectedLinks = ['Home', 'Features', 'About'];
     expectedLinks.forEach((linkText) => {
       const link = screen.getByText(linkText);
