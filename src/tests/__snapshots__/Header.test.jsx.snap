@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header component > Checks snapshot 1`] = `
+<div>
+  <header>
+    <h1>
+      Chat Without Boundaries
+    </h1>
+    <div>
+      <button>
+        Login
+      </button>
+      <button>
+        register
+      </button>
+    </div>
+  </header>
+</div>
+`;
