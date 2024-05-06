@@ -8,7 +8,7 @@ describe('Footer component', () => {
 
     const footer = screen.getByRole('contentinfo');
     const githubLink = within(footer).getByRole('link');
-    const footerText = within(footer).getByText(/Developed by Karol Pulawski/i);
+    const footerText = within(footer).getByText(/2023 Karol Pulawski/i);
 
     expect(footer).toBeInTheDocument();
     expect(githubLink).toBeInTheDocument();
