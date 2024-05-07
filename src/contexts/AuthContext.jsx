@@ -4,11 +4,11 @@ import axios from 'axios';
 
 const AuthContext = createContext({});
 
-export function useAuth() {
+function useAuth() {
   return useContext(AuthContext);
 }
 
-export const AuthProvider = ({ children }) => {
+const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -72,3 +72,5 @@ export const AuthProvider = ({ children }) => {
 AuthProvider.propTypes = {
   children: PropTypes.node,
 };
+
+export { AuthContext, AuthProvider, useAuth };
