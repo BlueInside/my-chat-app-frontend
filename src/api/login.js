@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { redirect } from 'react-router-dom';
 
 async function loginAction({ request }) {
   try {
@@ -12,10 +13,19 @@ async function loginAction({ request }) {
         'Content-Type': 'application/json',
       },
     });
-
-    return response.data;
+    if (response.data.token) {
+      localStorage.setItem('token', response.data.token);
+      return redirect('/chat');
+    } else {
+      return { error: 'No token received' };
+    }
   } catch (error) {
-    return { error: 'Incorrect username or password' };
+    if (error.response) {
+      return { error: 'Incorrect username or password' };
+    } else if (error.request) {
+      console.error('No response received');
+      return { error: 'Network error or server did not respond' };
+    }
   }
 }
 
