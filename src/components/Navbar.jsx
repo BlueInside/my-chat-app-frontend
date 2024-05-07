@@ -25,7 +25,7 @@ const Logo = styled.img`
 function Navbar() {
   return (
     <StyledNavbar>
-      <Logo src="#" alt="logo" />
+      <Logo src="../../src/assets/images/icon.webp" alt="logo" />
       <StyledUl>
         <li>
           <Link to="/">Home</Link>
