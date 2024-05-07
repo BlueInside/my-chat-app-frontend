@@ -4,13 +4,23 @@ import RegisterPage from './pages/RegisterPage';
 import ChatPage from './pages/ChatPage';
 import ProfilePage from './pages/ProfilePage';
 import SettingsPage from './pages/SettingsPage';
+import FeaturesPage from './pages/FeaturesPage';
 import { loginAction } from './api/login';
 import { registerAction } from './api/register';
+import AboutPage from './pages/AboutPage';
 
 const routesConfig = [
   {
     path: '/',
     element: <HomePage />,
+  },
+  {
+    path: '/features',
+    element: <FeaturesPage />,
+  },
+  {
+    path: '/about',
+    element: <AboutPage />,
   },
   {
     path: '/login',
