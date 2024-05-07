@@ -6,6 +6,7 @@ import ProfilePage from './pages/ProfilePage';
 import SettingsPage from './pages/SettingsPage';
 import { loginAction } from './api/login';
 import { registerAction } from './api/register';
+
 const routesConfig = [
   {
     path: '/',
