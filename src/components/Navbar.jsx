@@ -8,8 +8,16 @@ const StyledNavbar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 100px;
 `;
 
+const StyledUl = styled.ul`
+  display: flex;
+  gap: 20px;
+  flex: 1;
+  justify-content: flex-end;
+  list-style: none;
+`;
 const Logo = styled.img`
   height: 40px;
 `;
@@ -18,7 +26,7 @@ function Navbar() {
   return (
     <StyledNavbar>
       <Logo src="#" alt="logo" />
-      <ul>
+      <StyledUl>
         <li>
           <Link to="/">Home</Link>
         </li>
@@ -28,7 +36,7 @@ function Navbar() {
         <li>
           <Link to="about">About</Link>
         </li>
-      </ul>
+      </StyledUl>
     </StyledNavbar>
   );
 }
