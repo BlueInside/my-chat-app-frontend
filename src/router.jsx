@@ -4,7 +4,7 @@ import RegisterPage from './pages/RegisterPage';
 import ChatPage from './pages/ChatPage';
 import ProfilePage from './pages/ProfilePage';
 import SettingsPage from './pages/SettingsPage';
-
+import { loginAction } from './api/login';
 const routesConfig = [
   {
     path: '/',
@@ -13,6 +13,7 @@ const routesConfig = [
   {
     path: '/login',
     element: <LoginPage />,
+    action: loginAction,
   },
   {
     path: '/register',
