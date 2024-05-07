@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-
 import styled from 'styled-components';
+import { useAuth } from '../contexts/AuthContext';
 
 const StyledHeader = styled.header`
   text-align: center;
@@ -15,6 +15,31 @@ const Title = styled.h1`
 `;
 
 function Header() {
+  const { user, logout } = useAuth();
+  if (user)
+    return (
+      <div>
+        <Title>Welcome back {user.username}</Title>
+        <p>Enter the chat:</p>
+        <Link to={'/chat'}>
+          <button>Enter chat as {user.username}</button>
+        </Link>
+        <div>
+          <p>
+            It&apos;s not you?
+            <a
+              href="#"
+              onClick={() => {
+                logout();
+              }}
+            >
+              logout
+            </a>
+          </p>
+        </div>
+      </div>
+    );
+
   return (
     <StyledHeader>
       <Title>Chat Without Boundaries</Title>
