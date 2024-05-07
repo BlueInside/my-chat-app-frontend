@@ -3,31 +3,43 @@
 exports[`Header component > Checks snapshot 1`] = `
 <div>
   <header
-    class="sc-beqWNU hsiGrh"
+    class="sc-beqWNU hcMnNF"
   >
     <h1
       class="sc-gueXAH kCxaKJ"
     >
       Chat Without Boundaries
     </h1>
-    <a
-      href="/login"
+    <p
+      class="sc-jTrOVX hueXbQ"
     >
-      <button
-        class="sc-dmqGRC jRohbh"
-      >
-        Login
-      </button>
-    </a>
-    <a
-      href="/register"
+      Connect instantly with people all over the world.
+    </p>
+    <p
+      class="sc-jTrOVX hueXbQ"
     >
-      <button
-        class="sc-dmqGRC jRohbh"
+      Join today and start experiencing real-time communication with ease.
+    </p>
+    <div>
+      <a
+        href="/login"
       >
-        Register
-      </button>
-    </a>
+        <button
+          class="sc-dmqGRC bOaqPc"
+        >
+          Login
+        </button>
+      </a>
+      <a
+        href="/register"
+      >
+        <button
+          class="sc-dmqGRC bOaqPc"
+        >
+          Register
+        </button>
+      </a>
+    </div>
   </header>
 </div>
 `;
