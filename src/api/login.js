@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { redirect } from 'react-router-dom';
 
-async function loginAction({ request }) {
+const loginAction = async ({ request }) => {
   try {
     const formData = await request.formData();
     let data = Object.fromEntries(formData);
@@ -27,6 +27,6 @@ async function loginAction({ request }) {
       return { error: 'Network error or server did not respond' };
     }
   }
-}
+};
 
 export { loginAction };
