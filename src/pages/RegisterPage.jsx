@@ -1,6 +1,15 @@
+import LoginPrompt from '../components/LoginPrompt';
+import Navbar from '../components/Navbar';
+import RegisterForm from '../components/RegisterForm';
+
 function RegisterPage() {
-    return <div>Register Page</div>;
-  }
-  
-  export default RegisterPage;
-  
+  return (
+    <>
+      <Navbar />
+      <RegisterForm />
+      <LoginPrompt />
+    </>
+  );
+}
+
+export default RegisterPage;
