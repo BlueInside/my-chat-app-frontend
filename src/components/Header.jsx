@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
-const HeaderContainer = styled.div`
+const HeaderContainer = styled.header`
   background: #f8f9fa;
   padding: 20px;
   text-align: center;
