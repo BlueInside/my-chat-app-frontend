@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import { Form, useActionData } from 'react-router-dom';
+import { Form, useActionData, useNavigation } from 'react-router-dom';
 
 function LoginForm() {
   const [formInputs, setFormInputs] = useState({ password: '', username: '' });
   const errorData = useActionData();
+  const navigation = useNavigation();
+
+  const buttonText = navigation.state === 'submitting' ? 'Logging...' : 'Login';
 
   function onInputChange(inputName, value) {
     setFormInputs({ ...formInputs, [inputName]: value });
@@ -44,7 +47,7 @@ function LoginForm() {
         </div>
 
         <div>
-          <button type="submit">Login</button>
+          <button type="submit">{buttonText}</button>
         </div>
       </Form>
     </>
