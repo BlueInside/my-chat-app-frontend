@@ -24,6 +24,7 @@ async function registerAction({ request }) {
     }
   } catch (error) {
     if (error.response.data.errors) {
+      // Return validation errors
       return { errors: error.response.data.errors };
     }
 
