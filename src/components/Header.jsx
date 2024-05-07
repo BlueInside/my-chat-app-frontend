@@ -1,58 +1,83 @@
-import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
-const StyledHeader = styled.header`
+const HeaderContainer = styled.div`
+  background: #f8f9fa;
+  padding: 20px;
   text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(to right, #6a11cb, #2575fc);
-  color: white;
 `;
 
 const Title = styled.h1`
-  font-size: 2.5rem;
+  color: #343a40;
   margin-bottom: 20px;
+`;
+
+const Button = styled.button`
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+const LogoutLink = styled.a`
+  color: #007bff;
+  cursor: pointer;
+  margin-left: 10px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+`;
+
+const UserInfo = styled.p`
+  margin: 10px 0;
 `;
 
 function Header() {
   const { user, logout } = useAuth();
-  if (user)
+
+  if (user) {
     return (
-      <div>
-        <Title>Welcome back {user.username}</Title>
-        <p>Enter the chat:</p>
+      <HeaderContainer>
+        <Title>Welcome back, {user.username}!</Title>
+        <UserInfo>Ready to jump back into the conversation?</UserInfo>
         <Link to={'/chat'}>
-          <button>Enter chat as {user.username}</button>
+          <Button>Enter Chat</Button>
         </Link>
-        <div>
-          <p>
-            It&apos;s not you?
-            <a
-              href="#"
-              onClick={() => {
-                logout();
-              }}
-            >
-              logout
-            </a>
-          </p>
-        </div>
-      </div>
+        <UserInfo>
+          It&apos;s not you?
+          <LogoutLink
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              logout();
+            }}
+          >
+            Logout
+          </LogoutLink>
+        </UserInfo>
+      </HeaderContainer>
     );
+  }
 
   return (
-    <StyledHeader>
+    <HeaderContainer>
       <Title>Chat Without Boundaries</Title>
-      <div>
-        <Link to={'/login'}>
-          <button>Login</button>
-        </Link>
-
-        <Link to={'/register'}>
-          <button>register</button>
-        </Link>
-      </div>
-    </StyledHeader>
+      <Link to={'/login'}>
+        <Button>Login</Button>
+      </Link>
+      <Link to={'/register'}>
+        <Button>Register</Button>
+      </Link>
+    </HeaderContainer>
   );
 }
 
