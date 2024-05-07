@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { useAuth } from '../contexts/AuthContext';
 
 const HeaderContainer = styled.header`
-  background: #f8f9fa;
   padding: 20px;
   text-align: center;
 `;
@@ -21,6 +20,7 @@ const Button = styled.button`
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: 1.1rem;
 
   &:hover {
     background-color: #0056b3;
@@ -39,6 +39,11 @@ const LogoutLink = styled.a`
 
 const UserInfo = styled.p`
   margin: 10px 0;
+`;
+
+const Subtitle = styled.p`
+  font-size: 1.25rem;
+  margin-bottom: 20px;
 `;
 
 function Header() {
@@ -71,12 +76,18 @@ function Header() {
   return (
     <HeaderContainer>
       <Title>Chat Without Boundaries</Title>
-      <Link to={'/login'}>
-        <Button>Login</Button>
-      </Link>
-      <Link to={'/register'}>
-        <Button>Register</Button>
-      </Link>
+      <Subtitle>Connect instantly with people all over the world.</Subtitle>
+      <Subtitle>
+        Join today and start experiencing real-time communication with ease.
+      </Subtitle>
+      <div>
+        <Link to={'/login'}>
+          <Button>Login</Button>
+        </Link>
+        <Link to={'/register'}>
+          <Button>Register</Button>
+        </Link>
+      </div>
     </HeaderContainer>
   );
 }

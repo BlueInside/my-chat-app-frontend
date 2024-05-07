@@ -23,6 +23,7 @@ const PromptButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+  font-size: 1.1rem;
 
   &:hover {
     background-color: #0056b3;

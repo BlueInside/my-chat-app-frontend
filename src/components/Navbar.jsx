@@ -34,7 +34,7 @@ function Navbar() {
           <Link to="/features">Features</Link>
         </li>
         <li>
-          <Link to="about">About</Link>
+          <Link to="/about">About</Link>
         </li>
       </StyledUl>
     </StyledNavbar>
