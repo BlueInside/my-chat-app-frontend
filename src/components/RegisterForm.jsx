@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import { Form, useActionData } from 'react-router-dom';
+import { Form, useActionData, useNavigation } from 'react-router-dom';
 
 function RegisterForm() {
   const [formInputs, setFormInputs] = useState({ password: '', username: '' });
   const errorData = useActionData();
+  const navigation = useNavigation();
+  const registerButtonText =
+    navigation.state === 'submitting' ? 'Working...' : 'Sign-up';
   const validationErrors = errorData?.errors;
 
   function onInputChange(inputName, value) {
@@ -55,7 +58,7 @@ function RegisterForm() {
         </div>
 
         <div>
-          <button type="submit">Sign-up</button>
+          <button type="submit">{registerButtonText}</button>
         </div>
       </Form>
     </>
