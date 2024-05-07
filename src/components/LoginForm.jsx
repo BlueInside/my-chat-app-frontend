@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Form } from 'react-router-dom';
+import { Form, useActionData } from 'react-router-dom';
 
 function LoginForm() {
   const [formInputs, setFormInputs] = useState({ password: '', username: '' });
+  const errorData = useActionData();
 
   function onInputChange(inputName, value) {
     setFormInputs({ ...formInputs, [inputName]: value });
@@ -10,6 +11,7 @@ function LoginForm() {
 
   return (
     <Form action="/login" method="POST">
+      <div>{errorData && <p>{errorData.error}</p>}</div>
       <div>
         <label htmlFor="username">Username:</label>
         <input
