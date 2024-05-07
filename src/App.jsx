@@ -1,10 +1,15 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
-import routesConfig from './router';
-
-const router = createBrowserRouter(routesConfig);
+import { AuthProvider } from './contexts/AuthContext.jsx';
+import routesConfig from './router.jsx';
 
 function App() {
-  return <RouterProvider router={router} />;
+  const router = createBrowserRouter(routesConfig);
+
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
 }
 
 export default App;
