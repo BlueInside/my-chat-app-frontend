@@ -9,7 +9,7 @@ function LoginForm() {
   }
 
   return (
-    <Form>
+    <Form action="/login" method="POST">
       <div>
         <label htmlFor="username">Username:</label>
         <input
