@@ -1,22 +1,24 @@
-import { Form } from 'react-router-dom';
-
+import SearchBar from '../components/SearchBar';
+const conversation = {
+  lastMessage: 'hello',
+  participants: ['Karol pulawski'],
+  messages: [{ id: 1 }],
+};
 function ChatPage() {
   return (
     <>
       <div>
-        <Form id="search-form" role="search">
-          <input
-            id="q"
-            aria-label="Search conversation"
-            placeholder="Search"
-            type="search"
-            name="q"
-          />
-          <div id="search-spinner" aria-hidden hidden={true}></div>
-        </Form>
+        <SearchBar />
       </div>
 
-      <div role="list"></div>
+      <ul>
+        <li>
+          <div>
+            <p>{conversation.participants[0]}</p>
+            <p>{conversation.lastMessage[0]}</p>
+          </div>
+        </li>
+      </ul>
     </>
   );
 }
