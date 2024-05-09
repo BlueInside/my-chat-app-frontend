@@ -2,13 +2,13 @@ import { createContext, useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 
-const AuthContext = createContext({});
+export const AuthContext = createContext({});
 
-function useAuth() {
+export function useAuth() {
   return useContext(AuthContext);
 }
 
-const AuthProvider = ({ children }) => {
+export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
@@ -47,7 +47,9 @@ const AuthProvider = ({ children }) => {
 
   const login = (userData) => {
     localStorage.setItem('token', userData.token);
-    setUser(userData);
+    const data = { userData };
+    delete data.token;
+    setUser(data);
   };
 
   const logout = () => {
@@ -72,5 +74,3 @@ const AuthProvider = ({ children }) => {
 AuthProvider.propTypes = {
   children: PropTypes.node,
 };
-
-export { AuthContext, AuthProvider, useAuth };
