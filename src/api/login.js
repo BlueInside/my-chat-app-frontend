@@ -1,21 +1,19 @@
 import axios from 'axios';
-import { redirect } from 'react-router-dom';
 
-const loginAction = async ({ request }) => {
+const loginAction = async (data) => {
   try {
-    const formData = await request.formData();
-    let data = Object.fromEntries(formData);
+    if (!data) {
+      return { error: 'Incorrect inputs data' };
+    }
     const url = 'http://localhost:3000/authenticate/login';
 
     const response = await axios.post(url, data, {
-      signal: request.signal,
       headers: {
         'Content-Type': 'application/json',
       },
     });
     if (response.data.token) {
-      localStorage.setItem('token', response.data.token);
-      return redirect('/chat');
+      return response.data;
     } else {
       return { error: 'No token received' };
     }
