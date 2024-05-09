@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { useState } from 'react';
-import { Form, useActionData, useNavigation } from 'react-router-dom';
+import { Form, useNavigation } from 'react-router-dom';
+import { loginAction } from '../api/login';
+import { useAuth } from '../contexts/AuthContext';
 
 const FormContainer = styled.div`
   max-width: 400px;
@@ -50,11 +52,37 @@ const ErrorMessage = styled.p`
 
 function LoginForm() {
   const [formInputs, setFormInputs] = useState({ password: '', username: '' });
-  const errorData = useActionData();
+  const [error, setError] = useState(null);
   const navigation = useNavigation();
+  const { login } = useAuth();
 
   const buttonText =
     navigation.state === 'submitting' ? 'Logging in...' : 'Login';
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const username = form.elements.username.value;
+    const password = form.elements.password.value;
+
+    if (username.length < 5 && password.length < 8) {
+      setError('Incorrect username or password');
+      return;
+    } else {
+      const formData = new FormData(e.currentTarget);
+      let data = Object.fromEntries(formData);
+
+      // Get response from server
+      const response = await loginAction(data);
+      if (response.error) {
+        setError(response.error);
+      } else {
+        login(response);
+        setError('');
+        return;
+      }
+    }
+  }
 
   function onInputChange(inputName, value) {
     setFormInputs({ ...formInputs, [inputName]: value });
@@ -64,8 +92,8 @@ function LoginForm() {
     <FormContainer>
       <h1>Login</h1>
 
-      <StyledForm action="/login" method="POST">
-        {errorData && <ErrorMessage>{errorData.error}</ErrorMessage>}
+      <StyledForm action="/login" method="POST" onSubmit={handleSubmit}>
+        {error && <ErrorMessage>{error}</ErrorMessage>}
 
         <StyledLabel htmlFor="username">Username:</StyledLabel>
         <StyledInput
