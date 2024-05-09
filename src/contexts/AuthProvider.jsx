@@ -1,12 +1,7 @@
-import { createContext, useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-
-export const AuthContext = createContext({});
-
-export function useAuth() {
-  return useContext(AuthContext);
-}
+import { AuthContext } from '../utils/AuthContext';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);

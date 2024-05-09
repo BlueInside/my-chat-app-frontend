@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../utils/AuthContext';
 
 const HeaderContainer = styled.header`
   padding: 20px;

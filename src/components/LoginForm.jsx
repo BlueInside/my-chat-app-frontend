@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import { Form, useNavigation } from 'react-router-dom';
 import { loginAction } from '../api/login';
-import { useAuth } from '../contexts/AuthContext';
+import { useAuth } from '../utils/AuthContext';
 
 const FormContainer = styled.div`
   max-width: 400px;

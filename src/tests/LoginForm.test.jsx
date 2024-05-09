@@ -6,7 +6,7 @@ import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import routesConfig from '../router';
 import LoginForm from '../components/LoginForm';
-import { AuthContext } from '../contexts/AuthContext';
+import { AuthContext } from '../utils/AuthContext';
 
 // Setup axios mock
 let mock = new MockAdapter(axios);

@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from 'vitest';
 import { render, screen, within } from '@testing-library/react';
 import Header from '../components/Header';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { AuthContext } from '../contexts/AuthContext';
+import { AuthContext } from '../utils/AuthContext';
 
 describe('Header component', () => {
   it('Checks snapshot', () => {
