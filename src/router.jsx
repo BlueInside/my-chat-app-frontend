@@ -5,7 +5,6 @@ import ChatPage from './pages/ChatPage';
 import ProfilePage from './pages/ProfilePage';
 import SettingsPage from './pages/SettingsPage';
 import FeaturesPage from './pages/FeaturesPage';
-import { loginAction } from './api/login';
 import { registerAction } from './api/register';
 import AboutPage from './pages/AboutPage';
 
@@ -25,7 +24,6 @@ const routesConfig = [
   {
     path: '/login',
     element: <LoginPage />,
-    action: loginAction,
   },
   {
     path: '/register',
