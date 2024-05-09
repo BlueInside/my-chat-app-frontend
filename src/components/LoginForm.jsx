@@ -74,7 +74,7 @@ function LoginForm() {
           type="text"
           value={formInputs.username}
           onChange={(event) => {
-            onInputChange(event.target.name, event.target.value);
+            onInputChange('username', event.target.value);
           }}
           required
         />
@@ -86,7 +86,7 @@ function LoginForm() {
           type="password"
           value={formInputs.password}
           onChange={(event) => {
-            onInputChange(event.target.name, event.target.value);
+            onInputChange('password', event.target.value);
           }}
           required
         />
