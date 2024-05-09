@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from 'vitest';
 import ChatPage from '../pages/ChatPage';
-import { render, screen, waitFor, within } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { mockConversation } from './mocks/mockConversation.js';
 import axios from 'axios';
