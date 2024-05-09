@@ -25,7 +25,7 @@ exports[`Header component > Checks snapshot 1`] = `
         href="/login"
       >
         <button
-          class="sc-dmqGRC bOaqPc"
+          class="sc-dmqGRC kLUQxJ"
         >
           Login
         </button>
@@ -34,7 +34,7 @@ exports[`Header component > Checks snapshot 1`] = `
         href="/register"
       >
         <button
-          class="sc-dmqGRC bOaqPc"
+          class="sc-dmqGRC kLUQxJ"
         >
           Register
         </button>
