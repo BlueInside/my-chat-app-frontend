@@ -6,7 +6,7 @@ export default function SearchBar() {
       <input
         id="q"
         aria-label="Search conversation"
-        placeholder="Search"
+        placeholder="Search..."
         type="search"
         name="q"
       />
