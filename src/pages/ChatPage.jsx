@@ -1,24 +1,15 @@
+import { useLoaderData } from 'react-router-dom';
+import ConversationsList from '../components/ConversationsList';
 import SearchBar from '../components/SearchBar';
-const conversation = {
-  lastMessage: 'hello',
-  participants: ['Karol pulawski'],
-  messages: [{ id: 1 }],
-};
+
 function ChatPage() {
+  const conversations = useLoaderData();
   return (
     <>
       <div>
         <SearchBar />
+        <ConversationsList conversations={conversations} />
       </div>
-
-      <ul>
-        <li>
-          <div>
-            <p>{conversation.participants[0]}</p>
-            <p>{conversation.lastMessage[0]}</p>
-          </div>
-        </li>
-      </ul>
     </>
   );
 }
