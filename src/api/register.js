@@ -13,8 +13,6 @@ async function registerAction({ request }) {
         'Content-Type': 'application/json',
       },
     });
-
-    console.log(response.data);
     if (response.data.token) {
       const token = response.data.token;
       localStorage.setItem('token', token);
