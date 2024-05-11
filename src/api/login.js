@@ -22,7 +22,10 @@ const loginAction = async (data) => {
       return { error: 'Incorrect username or password' };
     } else if (error.request) {
       console.error('No response received');
-      return { error: 'Network error or server did not respond' };
+      return {
+        error:
+          'Network error or server did not respond, please try again later',
+      };
     }
   }
 };
