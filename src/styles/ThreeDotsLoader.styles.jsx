@@ -13,7 +13,7 @@ const DotsLoader = styled.div`
   width: 100%;
   align-items: center;
   justify-content: center;
-  top: 100%;
+  top: 110%;
 `;
 
 // Styled component for each dot
