@@ -21,7 +21,6 @@ async function registerAction({ request }) {
       return { error: 'No token received' };
     }
   } catch (error) {
-    console.log(error);
     if (error.response?.data?.errors) {
       // Return validation errors
       return { errors: error.response.data.errors };
