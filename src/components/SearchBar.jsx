@@ -1,8 +1,8 @@
-import { Form, useLoaderData } from 'react-router-dom';
+import { Form, useLoaderData, useSubmit } from 'react-router-dom';
 import UsersDisplay from './UsersDisplay';
 export default function SearchBar() {
   const { users, q } = useLoaderData();
-
+  const submit = useSubmit();
   return (
     <>
       <Form id="search-form" role="search">
@@ -13,6 +13,10 @@ export default function SearchBar() {
           type="search"
           name="q"
           defaultValue={q}
+          onChange={(e) => {
+            e.preventDefault();
+            submit(e.currentTarget.form);
+          }}
         />
         <div id="search-spinner" aria-hidden hidden={true}></div>
       </Form>
