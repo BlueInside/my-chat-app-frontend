@@ -7,7 +7,7 @@ import SettingsPage from './pages/SettingsPage';
 import FeaturesPage from './pages/FeaturesPage';
 import { registerAction } from './api/register';
 import AboutPage from './pages/AboutPage';
-import { conversationLoader } from './api/conversation';
+import { usersLoader } from './api/users';
 
 const routesConfig = [
   {
@@ -34,7 +34,7 @@ const routesConfig = [
   {
     path: '/chat',
     element: <ChatPage />,
-    loader: conversationLoader,
+    loader: usersLoader,
   },
   {
     path: '/chat/:conversationId',
