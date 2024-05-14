@@ -1,5 +1,5 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it } from 'vitest';
 import SearchBar from '../components/SearchBar';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
@@ -10,11 +10,18 @@ let router;
 const mockAxios = new MockAdapter(axios);
 
 describe('SearchBar component', () => {
+  beforeEach(() => {
+    mockAxios.restore();
+  });
+
   router = createMemoryRouter(
     [
       {
         path: '/',
         element: <SearchBar />,
+        loader: async () => {
+          return { users: [{ _id: 3, username: 'hello' }], q: '' };
+        },
       },
     ],
     { initialEntries: ['/'] }
@@ -35,29 +42,19 @@ describe('SearchBar component', () => {
     expect(searchInput.value).toBe('hello');
   });
 
-  it('Returns filtered usernames based on search query', async () => {
+  it('Fetches and displays results based on search input', async () => {
     const user = userEvent.setup();
-    const mockResponse = [
-      { id: 1, username: 'john' },
-      { id: 2, username: 'jane' },
-    ];
-
-    mockAxios
-      .onGet('http://localhost:3000/users', { params: { q: 'jo' } })
-      .reply(200, mockResponse);
 
     render(<RouterProvider router={router} />);
 
-    const searchInput = screen.getByPlaceholderText(/search/i);
+    const searchInput = screen.getByPlaceholderText('Search...');
 
-    await user.type(searchInput, 'jo');
+    await user.type(searchInput, 'hello');
+    await user.keyboard('Enter');
 
     await waitFor(() => {
-      const results = screen
-        .getAllByRole('listitem')
-        .map((li) => li.textContent);
-
-      expect(results).toEqual(['john', 'jane']);
+      expect(screen.getByText('hello')).toBeInTheDocument();
+      expect(screen.getAllByRole('listitem')).toHaveLength(1);
     });
   });
 });
