@@ -11,7 +11,16 @@ const mockAxios = new MockAdapter(axios);
 
 describe('SearchBar component', () => {
   beforeEach(() => {
-    mockAxios.restore();
+    mockAxios.resetHandlers();
+    mockAxios.onAny().reply(404); // Catch-all to prevent unhandled request errors
+    mockAxios
+      .onGet('http://localhost:3000/users', { params: { q: 'jo' } })
+      .reply(200, {
+        users: [
+          { id: 1, username: 'john' },
+          { id: 2, username: 'jane' },
+        ],
+      });
   });
 
   router = createMemoryRouter(
