@@ -90,7 +90,7 @@ export default function SearchBar() {
           onBlur={() => {
             setTimeout(() => {
               setIsFocused(false);
-            }, 80); // Delay by 50ms so it's possible to click on user and fire click handler
+            }, 150); // Delay by 50ms so it's possible to click on user and fire click handler
           }}
         />
         {searching && <ThreeDotsLoader />}
