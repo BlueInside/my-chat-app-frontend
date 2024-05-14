@@ -5,10 +5,11 @@ import {
   useSubmit,
 } from 'react-router-dom';
 import UsersDisplay from './UsersDisplay';
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import ThreeDotsLoader from '../styles/ThreeDotsLoader.styles';
 
 import styled from 'styled-components';
+import debounce from '../utils/debounce';
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -46,15 +47,33 @@ export default function SearchBar() {
   const { users, q } = useLoaderData();
   const navigation = useNavigation();
   const [isFocused, setIsFocused] = useState(false);
+  const [searchQuery, setSearchQuery] = useState(q || '');
   const submit = useSubmit();
+
+  const formRef = useRef(null);
 
   const searching =
     navigation.location &&
     new URLSearchParams(navigation.location.search).has('q');
 
+  const debouncedSubmit = useCallback(
+    debounce(() => {
+      if (formRef.current) {
+        submit(formRef.current, { replace: !!q });
+      }
+    }, 500),
+    [submit, q]
+  );
+
+  useEffect(() => {
+    if (searchQuery) {
+      debouncedSubmit();
+    }
+  }, [searchQuery, debouncedSubmit]);
+
   return (
     <SearchContainer>
-      <StyledForm id="search-form" role="search">
+      <StyledForm id="search-form" role="search" ref={formRef}>
         <SearchInput
           id="q"
           aria-label="Search conversation"
@@ -64,11 +83,8 @@ export default function SearchBar() {
           defaultValue={q}
           className={searching ? 'loading' : ''}
           onChange={(e) => {
-            const isFirstSearch = q == null;
             e.preventDefault();
-            submit(e.currentTarget.form, {
-              replace: !isFirstSearch,
-            });
+            setSearchQuery(e.target.value);
           }}
           onFocus={() => setIsFocused(true)}
           onBlur={() => {
