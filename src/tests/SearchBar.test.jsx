@@ -57,4 +57,21 @@ describe('SearchBar component', () => {
       expect(screen.getAllByRole('listitem')).toHaveLength(1);
     });
   });
+
+  it('Should not display users if not focused', async () => {
+    const user = userEvent.setup();
+
+    render(<RouterProvider router={router} />);
+
+    const searchInput = screen.getByPlaceholderText('Search...');
+
+    await user.type(searchInput, 'hello');
+    await user.keyboard('Enter');
+    await user.tab();
+
+    await waitFor(() => {
+      const userListItems = screen.queryAllByRole('listitem');
+      expect(userListItems).toHaveLength(0);
+    });
+  });
 });
