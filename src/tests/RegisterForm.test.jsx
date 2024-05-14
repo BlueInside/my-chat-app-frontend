@@ -5,7 +5,6 @@ import userEvent from '@testing-library/user-event';
 
 import routesConfig from '../router';
 import RegisterForm from '../components/RegisterForm';
-import { act } from 'react';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
