@@ -77,9 +77,7 @@ describe('RegisterForm component', () => {
     await user.type(usernameInput, '123');
     await user.type(passwordInput, 'short');
 
-    await act(async () => {
-      await user.click(registerButton);
-    });
+    await user.click(registerButton);
 
     await waitFor(() => {
       expect(
