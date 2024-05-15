@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import axios from 'axios';
+import { useState } from 'react';
 
 const Container = styled.div`
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -44,15 +46,48 @@ const Avatar = styled.img`
   background-color: #f0f0f0;
 `;
 
-export default function UsersDisplay({ users }) {
+export default function UsersDisplay({
+  users,
+  conversations,
+  setConversations,
+}) {
+  const [error, setError] = useState('');
+
+  const createConversation = async (receiverId) => {
+    if (conversations.some((c) => c.participants.includes(receiverId))) {
+      setError('Conversation already exists');
+      return;
+    }
+
+    try {
+      const response = await axios.post('http://localhost:3000/conversations', {
+        receiverId: receiverId,
+      });
+      setConversations((prev) => [...prev, response.data.conversation]);
+      setError('');
+    } catch (error) {
+      console.log(error);
+      if (error.response && error.response.status === 409) {
+        setError('Conversation already exists');
+      } else {
+        console.error('Error creating or fetching conversation', error);
+        setError('Failed to create conversation');
+      }
+    }
+  };
+
   if (!users || users.length === 0) return null;
+
   return (
     <Container>
+      {error && <p>{error}</p>}
       <UserList>
         {users.map((user) => (
           <UserItem
             key={user._id}
-            onClick={() => alert(`Clicked on ${user.username}`)}
+            onClick={() => {
+              createConversation(user._id);
+            }}
           >
             <Avatar
               src={
@@ -74,4 +109,6 @@ UsersDisplay.propTypes = {
       username: PropTypes.string.isRequired,
     })
   ),
+  conversations: PropTypes.array,
+  setConversations: PropTypes.func,
 };
