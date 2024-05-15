@@ -5,11 +5,13 @@ const mockConversation = [
     participants: [
       {
         _id: '62225e00f4761e8926d632a0',
+        id: '62225e00f4761e8926d632a0',
         username: 'johndoe', // Example participant's username
         avatarUrl: 'http://example.com/path/to/avatar.jpg', // URL to the avatar image
       },
       {
         _id: '62225e10f4761e8926d632a1',
+        id: '62225e10f4761e8926d632a1',
         username: 'janedoe',
         avatarUrl: 'http://example.com/path/to/another-avatar.jpg',
       },
