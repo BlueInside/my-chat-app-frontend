@@ -1,5 +1,5 @@
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
-import { describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import UsersDisplay from '../components/UsersDisplay';
 import { render, screen, waitFor } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
@@ -10,6 +10,11 @@ const mockAxios = new MockAdapter(axios);
 
 let router;
 describe('UsersDisplay component', () => {
+  beforeEach(() => {
+    mockAxios.resetHandlers();
+    mockAxios.reset();
+  });
+
   let mockUsers = [
     { _id: 1, username: 'karol' },
     { _id: 2, username: 'justyna' },
@@ -33,6 +38,14 @@ describe('UsersDisplay component', () => {
     usernames.map((u, i) => {
       expect(u).toBe(mockUsers[i].username);
     });
+    mockAxios
+      .onGet('http://localhost:3000/users', { params: { q: 'jo' } })
+      .reply(200, {
+        users: [
+          { id: 1, username: 'john' },
+          { id: 2, username: 'jane' },
+        ],
+      });
     expect(users).toHaveLength(2);
   });
 
@@ -56,6 +69,7 @@ describe('UsersDisplay component', () => {
     mockAxios.onPost('http://localhost:3000/conversations').reply(200, {
       conversation: { id: '123', participants: ['user1', 'user2'] },
     });
+
     const user = userEvent.setup();
 
     const mockUsers = [{ _id: 'user2', username: 'TestUser' }];
@@ -64,7 +78,13 @@ describe('UsersDisplay component', () => {
       [
         {
           path: '/',
-          element: <UsersDisplay users={mockUsers} />,
+          element: (
+            <UsersDisplay
+              setConversations={vi.fn()}
+              conversations={[]}
+              users={mockUsers}
+            />
+          ),
         },
       ],
       { initialEntries: ['/'] }
@@ -79,6 +99,41 @@ describe('UsersDisplay component', () => {
       expect(mockAxios.history.post[0].url).toBe(
         'http://localhost:3000/conversations'
       );
+    });
+  });
+
+  it(`Should not create duplicate conversations`, async () => {
+    mockAxios.onPost('http://localhost:3000/conversations').reply(409, {
+      message: 'Conversation already exists',
+    });
+
+    const user = userEvent.setup();
+
+    const mockUsers = [{ _id: 'user2', username: 'TestUser' }];
+
+    router = createMemoryRouter(
+      [
+        {
+          path: '/',
+          element: (
+            <UsersDisplay
+              setConversations={vi.fn()}
+              conversations={[{ participants: ['user1', 'user2'] }]}
+              users={mockUsers}
+            />
+          ),
+        },
+      ],
+      { initialEntries: ['/'] }
+    );
+    render(<RouterProvider router={router} />);
+
+    await user.click(screen.getByText(/testUser/i));
+
+    await waitFor(() => {
+      expect(
+        screen.getByText('Conversation already exists')
+      ).toBeInTheDocument();
     });
   });
 });
