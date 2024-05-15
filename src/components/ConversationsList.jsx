@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { useAuth } from '../utils/AuthContext';
 
 const ConversationContainer = styled.ul`
   list-style: none;
@@ -30,18 +31,31 @@ const LastMessage = styled.p`
 `;
 
 export default function ConversationsList({ conversations }) {
+  const { user } = useAuth();
+  console.log(user);
   if (!conversations || conversations.length === 0) {
     return <p>Yours conversations will be displayed here</p>;
   }
 
   return (
     <ConversationContainer>
-      {conversations.map((conversation) => (
-        <ConversationItem key={conversation._id}>
-          <Username>{conversation.participants[1].username}</Username>
-          <LastMessage>{conversation.lastMessage}</LastMessage>
-        </ConversationItem>
-      ))}
+      {conversations.map((conversation) => {
+        // Don't display your name
+        const otherParticipant = conversation.participants.find(
+          (participant) => {
+            console.log(participant._id, user.id);
+            return participant._id !== user.id;
+          }
+        );
+        return (
+          <ConversationItem key={conversation._id}>
+            <Username>
+              {otherParticipant ? otherParticipant.username : 'unknown'}
+            </Username>
+            <LastMessage>{conversation.lastMessage}</LastMessage>
+          </ConversationItem>
+        );
+      })}
     </ConversationContainer>
   );
 }
