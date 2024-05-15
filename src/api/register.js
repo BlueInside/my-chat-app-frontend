@@ -13,8 +13,6 @@ async function registerAction({ request }) {
         'Content-Type': 'application/json',
       },
     });
-
-    console.log(response.data);
     if (response.data.token) {
       const token = response.data.token;
       localStorage.setItem('token', token);
@@ -23,7 +21,7 @@ async function registerAction({ request }) {
       return { error: 'No token received' };
     }
   } catch (error) {
-    if (error.response.data.errors) {
+    if (error.response?.data?.errors) {
       // Return validation errors
       return { errors: error.response.data.errors };
     }
@@ -34,7 +32,10 @@ async function registerAction({ request }) {
       return { error: error.response.data.message };
     } else if (error.request) {
       console.error('No response received');
-      return { error: 'Network error or server did not respond' };
+      return {
+        error:
+          'Network error or server did not respond, please try again later',
+      };
     } else {
       console.error('Error setting up request:', error.message);
       return { error: error.message };

@@ -68,6 +68,13 @@ function RegisterForm() {
 
       <StyledForm action="/register" method="POST">
         <div>
+          {/* Display error that occurred during axios request */}
+          {errorData?.error && (
+            <ErrorMessage>
+              <li>{errorData.error}</li>
+            </ErrorMessage>
+          )}
+          {/* Display validation errors */}
           {validationErrors && (
             <ErrorMessage>
               {validationErrors.map((e, i) => (

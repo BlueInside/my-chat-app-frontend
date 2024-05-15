@@ -30,6 +30,7 @@ export const AuthProvider = ({ children }) => {
         }
       } catch (error) {
         if (error.code === 'ERR_CANCELED') return;
+
         console.error('Error during validation:', error.message);
       }
     };
