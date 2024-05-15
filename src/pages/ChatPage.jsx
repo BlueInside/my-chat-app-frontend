@@ -9,12 +9,15 @@ function ChatPage() {
     conversationLoader().then((data) => {
       setConversations(data);
     });
-  }, []);
+  }, [conversations]);
 
   return (
     <>
       <div>
-        <SearchBar />
+        <SearchBar
+          setConversations={setConversations}
+          conversations={conversations}
+        />
         <ConversationsList conversations={conversations} />
       </div>
     </>
