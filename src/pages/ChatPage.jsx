@@ -6,9 +6,9 @@ import { conversationLoader } from '../api/conversation';
 import { Outlet } from 'react-router-dom';
 
 const ChatContainer = styled.div`
-  display: grid;
-  grid-template-columns: 300px 1fr; /* 300px for the sidebar, and the rest for the chat area */
-  height: 100vh; /* Full view height */
+     display: grid;
+    grid-template-columns: 300px 1fr;
+    height: 95vh;
 `;
 
 const Sidebar = styled.div`
