@@ -10,6 +10,8 @@ import AboutPage from './pages/AboutPage';
 import { usersLoader } from './api/users';
 import ProtectedRoute from './components/ProtectedRoute';
 import ConversationView from './components/ConversationView';
+import { conversationDetailLoader } from './api/conversation';
+import axios from 'axios';
 
 const routesConfig = [
   {
@@ -45,10 +47,21 @@ const routesConfig = [
       {
         path: '/chat/:conversationId',
         element: <ConversationView />,
+        loader: conversationDetailLoader,
       },
     ],
   },
-
+  {
+    path: '/messages',
+    action: async ({ request }) => {
+      const formData = await request.formData();
+      const response = await axios.post(
+        'http://localhost:3000/messages',
+        formData
+      );
+      return response.json(); // You should return the updated conversation or a success message
+    },
+  },
   {
     path: '/profile/:userId',
     element: <ProfilePage />,
