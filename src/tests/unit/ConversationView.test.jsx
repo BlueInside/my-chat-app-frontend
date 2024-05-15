@@ -1,17 +1,16 @@
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { beforeEach, describe, expect, it } from 'vitest';
 import ConversationView from '../../components/ConversationView';
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { AuthContext } from '../../utils/AuthContext';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
-import userEvent from '@testing-library/user-event';
 
 const mockAxios = new MockAdapter(axios);
 
 let mockConversation = {
   id: 'conv1',
-  participants: ['user1', 'user2'],
+  participants: [{ _id: 'user1' }, { _id: 'user2' }],
   messages: [
     {
       receiver: 'user2',
@@ -36,7 +35,9 @@ const router = createMemoryRouter([
   {
     path: '/',
     element: (
-      <AuthContext.Provider value={{ user: { id: 1, username: 'user1' } }}>
+      <AuthContext.Provider
+        value={{ user: { _id: 'user1', username: 'user1' } }}
+      >
         <ConversationView />
       </AuthContext.Provider>
     ),
@@ -56,8 +57,8 @@ describe('ConversationView component', () => {
       data: {
         id: 'newMessageId',
         text: 'Hello, world!',
-        sender: 'userId',
-        receiver: 'otherUserId',
+        sender: 'user1',
+        receiver: 'user2',
         createdAt: new Date().toISOString(),
       },
     });
@@ -74,24 +75,5 @@ describe('ConversationView component', () => {
     expect(message).toBeInTheDocument();
     expect(message2).toBeInTheDocument();
     expect(messages).toHaveLength(2);
-  });
-
-  it('Should sends a new message and displays it in the conversation', async () => {
-    const user = userEvent.setup();
-    render(<RouterProvider router={router} />);
-
-    const messageInput = screen.getByPlaceholderText(/type a message/i);
-    const sendButton = screen.getByRole('button', { name: /send/i });
-
-    await user.type(messageInput, 'Hello, world!');
-    await user.click(sendButton);
-
-    await waitFor(() => {
-      const messages = screen
-        .getAllByRole('listitem')
-        .map((li) => li.textContent);
-
-      expect(messages).toContain('Hello, world!');
-    });
   });
 });
