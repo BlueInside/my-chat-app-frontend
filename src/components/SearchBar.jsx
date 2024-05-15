@@ -19,7 +19,6 @@ const StyledForm = styled(Form)`
 `;
 
 const SearchContainer = styled.div`
-  max-width: 250px;
   display: flex;
   position: relative;
   gap: 10px;
