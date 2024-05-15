@@ -1,0 +1,45 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Header component > Checks snapshot 1`] = `
+<div>
+  <header
+    class="sc-beqWNU hcMnNF"
+  >
+    <h1
+      class="sc-gueXAH kCxaKJ"
+    >
+      Chat Without Boundaries
+    </h1>
+    <p
+      class="sc-jTrOVX hueXbQ"
+    >
+      Connect instantly with people all over the world.
+    </p>
+    <p
+      class="sc-jTrOVX hueXbQ"
+    >
+      Join today and start experiencing real-time communication with ease.
+    </p>
+    <div>
+      <a
+        href="/login"
+      >
+        <button
+          class="sc-dmqGRC kLUQxJ"
+        >
+          Login
+        </button>
+      </a>
+      <a
+        href="/register"
+      >
+        <button
+          class="sc-dmqGRC kLUQxJ"
+        >
+          Register
+        </button>
+      </a>
+    </div>
+  </header>
+</div>
+`;

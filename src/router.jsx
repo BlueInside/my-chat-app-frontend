@@ -9,6 +9,7 @@ import { registerAction } from './api/register';
 import AboutPage from './pages/AboutPage';
 import { usersLoader } from './api/users';
 import ProtectedRoute from './components/ProtectedRoute';
+import ConversationView from './components/ConversationView';
 
 const routesConfig = [
   {
@@ -40,11 +41,14 @@ const routesConfig = [
       </ProtectedRoute>
     ),
     loader: usersLoader,
+    children: [
+      {
+        path: '/chat/:conversationId',
+        element: <ConversationView />,
+      },
+    ],
   },
-  {
-    path: '/chat/:conversationId',
-    element: <ChatPage />,
-  },
+
   {
     path: '/profile/:userId',
     element: <ProfilePage />,

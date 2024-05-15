@@ -4,9 +4,9 @@ import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
-import routesConfig from '../router';
-import LoginForm from '../components/LoginForm';
-import { AuthContext } from '../utils/AuthContext';
+import routesConfig from '../../router';
+import LoginForm from '../../components/LoginForm';
+import { AuthContext } from '../../utils/AuthContext';
 
 // Setup axios mock
 let mock = new MockAdapter(axios);

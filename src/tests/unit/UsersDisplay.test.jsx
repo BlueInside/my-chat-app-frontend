@@ -1,6 +1,6 @@
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import UsersDisplay from '../components/UsersDisplay';
+import UsersDisplay from '../../components/UsersDisplay';
 import { render, screen, waitFor } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';

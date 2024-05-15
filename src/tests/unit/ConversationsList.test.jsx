@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import ConversationsList from '../components/ConversationsList';
-import { mockConversation } from './mocks/mockConversation';
-import { AuthContext } from '../utils/AuthContext';
+import ConversationsList from '../../components/ConversationsList';
+import { mockConversation } from '../mocks/mockConversation';
+import { AuthContext } from '../../utils/AuthContext';
 
 describe('ConversationsList component', () => {
   it('Should display custom text if no conversations started', async () => {

@@ -3,8 +3,8 @@ import { render, screen, waitFor } from '@testing-library/react';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 
-import routesConfig from '../router';
-import RegisterForm from '../components/RegisterForm';
+import routesConfig from '../../router';
+import RegisterForm from '../../components/RegisterForm';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 
