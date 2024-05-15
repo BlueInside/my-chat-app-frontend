@@ -10,6 +10,7 @@ import ThreeDotsLoader from '../styles/ThreeDotsLoader.styles';
 
 import styled from 'styled-components';
 import debounce from '../utils/debounce';
+import PropTypes from 'prop-types';
 
 const StyledForm = styled(Form)`
   display: flex;
@@ -43,7 +44,7 @@ const SearchInput = styled.input`
   }
 `;
 
-export default function SearchBar() {
+export default function SearchBar({ conversations, setConversations }) {
   const { users, q } = useLoaderData();
   const navigation = useNavigation();
   const [isFocused, setIsFocused] = useState(false);
@@ -95,7 +96,18 @@ export default function SearchBar() {
         />
         {searching && <ThreeDotsLoader />}
       </StyledForm>
-      {isFocused && <UsersDisplay users={users} />}
+      {isFocused && (
+        <UsersDisplay
+          setConversations={setConversations}
+          conversations={conversations}
+          users={users}
+        />
+      )}
     </SearchContainer>
   );
 }
+
+SearchBar.propTypes = {
+  conversations: PropTypes.array,
+  setConversations: PropTypes.func,
+};
