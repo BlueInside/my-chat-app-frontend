@@ -38,7 +38,7 @@ export default function ConversationsList({ conversations }) {
     <ConversationContainer>
       {conversations.map((conversation) => (
         <ConversationItem key={conversation._id}>
-          <Username>{conversation.participants[0].username}</Username>
+          <Username>{conversation.participants[1].username}</Username>
           <LastMessage>{conversation.lastMessage}</LastMessage>
         </ConversationItem>
       ))}
