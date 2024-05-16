@@ -45,8 +45,7 @@ const conversationDetailLoader = async ({ params }) => {
         },
       }
     );
-    console.log(response);
-    return response.data;
+    return response.data.conversation;
   } catch (error) {
     console.error('Error fetching conversation details:', error);
 
