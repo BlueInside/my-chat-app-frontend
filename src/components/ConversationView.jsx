@@ -57,16 +57,28 @@ const SendButton = styled.button`
     background-color: #0056b3;
   }
 `;
+
+const Avatar = styled.img`
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #d3d3d3;
+  background-color: #f0f0f0;
+`;
+
+const UserInfoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 30px;
+`;
 export default function ConversationView() {
   const fetcher = useFetcher();
   const conversation = useLoaderData();
   const { user } = useAuth();
   const [messages, setMessages] = useState(conversation.messages || []);
-  console.log(conversation.messages);
-  console.log(conversation);
-  const receiverId = conversation?.participants.filter(
-    (p) => p._id !== user._id
-  );
+  const receiver = conversation?.participants.find((p) => p._id !== user.id);
 
   useEffect(() => {
     if (fetcher.data && fetcher.data.data && fetcher.data.data.id) {
@@ -76,6 +88,13 @@ export default function ConversationView() {
 
   return (
     <ChatArea>
+      <UserInfoContainer id="receiver-info">
+        <Avatar
+          src={receiver.avatar || '../../src/assets/images/defaultAvatar.webp'}
+          alt={`${receiver.username}'s avatar`}
+        />
+        <h2>{receiver.username}</h2>
+      </UserInfoContainer>
       <MessagesWindow>
         {messages.length > 0 ? (
           messages.map((m) => <MessageItem key={m.id}>{m.text}</MessageItem>)
@@ -91,7 +110,7 @@ export default function ConversationView() {
           action="/messages"
           style={{ display: 'flex', flex: '1' }}
         >
-          <input type="hidden" name="receiverId" value={receiverId} />
+          <input type="hidden" name="receiverId" value={receiver._id} />
           <MessageInput
             type="text"
             name="text"
