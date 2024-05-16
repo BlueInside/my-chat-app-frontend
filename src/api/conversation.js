@@ -35,7 +35,6 @@ const conversationDetailLoader = async ({ params }) => {
   if (!token) {
     throw new Response('Authentication required', { status: 401 });
   }
-  console.log(params.conversationId);
   try {
     const response = await axios.get(
       `http://localhost:3000/conversations/${params.conversationId}`,
