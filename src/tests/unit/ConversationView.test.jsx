@@ -10,7 +10,10 @@ const mockAxios = new MockAdapter(axios);
 
 let mockConversation = {
   id: 'conv1',
-  participants: [{ _id: 'user1' }, { _id: 'user2' }],
+  participants: [
+    { _id: 'user1', username: 'user1', avatar: 'user1-avatar.png' },
+    { _id: 'user2', username: 'user2', avatar: 'user2-avatar.png' },
+  ],
   messages: [
     {
       receiver: 'user2',
@@ -55,6 +58,10 @@ describe('ConversationView component', () => {
     // Mock the sendMessage API endpoint
     mockAxios.onPost('http://localhost:3000/messages').reply(201, {
       data: {
+        participants: [
+          { _id: 'user1', username: 'karol', avatarUrl: '#' },
+          { _id: 'user2', username: 'justyna', avatarUrl: '#' },
+        ],
         id: 'newMessageId',
         text: 'Hello, world!',
         sender: 'user1',
@@ -75,5 +82,15 @@ describe('ConversationView component', () => {
     expect(message).toBeInTheDocument();
     expect(message2).toBeInTheDocument();
     expect(messages).toHaveLength(2);
+  });
+
+  it('Should display user and avatar of user we chat with', async () => {
+    render(<RouterProvider router={router} />);
+
+    const receiverName = screen.getByRole('heading', { name: 'user1' });
+    const receiverIcon = screen.getByRole('img');
+
+    expect(receiverName).toBeInTheDocument();
+    expect(receiverIcon).toBeInTheDocument();
   });
 });
