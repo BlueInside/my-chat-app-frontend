@@ -63,6 +63,7 @@ export default function ConversationView() {
   const { user } = useAuth();
   const [messages, setMessages] = useState(conversation.messages || []);
   console.log(conversation.messages);
+  console.log(conversation);
   const receiverId = conversation?.participants.filter(
     (p) => p._id !== user._id
   );
