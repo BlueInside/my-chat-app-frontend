@@ -21,7 +21,10 @@ const Sidebar = styled.div`
 
 const ChatArea = styled.div`
   padding: 20px;
-  overflow-y: auto; /* Makes the chat area scrollable */
+  display: flex;
+  flex-direction: column;
+  height: 99%; /* Full height */
+  background-color: #f9f9f957; /* Light grey background */
 `;
 
 function ChatPage() {
