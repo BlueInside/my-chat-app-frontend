@@ -43,7 +43,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = (userData) => {
     localStorage.setItem('token', userData.token);
-    const data = { userData };
+    const data = { ...userData.user, token: userData.token };
     delete data.token;
     setUser(data);
   };

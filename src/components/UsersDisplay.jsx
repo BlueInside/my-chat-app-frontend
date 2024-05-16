@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { useState } from 'react';
+import { conversationLoader } from '../api/conversation';
 
 const Container = styled.div`
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -53,20 +54,45 @@ export default function UsersDisplay({
 }) {
   const [error, setError] = useState('');
 
+  function fetchConversations() {
+    conversationLoader().then((data) => {
+      setConversations(data);
+    });
+  }
+
   const createConversation = async (receiverId) => {
-    if (conversations.some((c) => c.participants.includes(receiverId))) {
+    const token = localStorage.getItem('token');
+
+    if (
+      conversations.some(
+        (
+          conversation // outer.some iterates over each conversation
+        ) =>
+          conversation.participants.some(
+            // inner some check each participant in array to see if id matches the receiver id
+            (participant) => participant._id === receiverId
+          )
+      )
+    ) {
       setError('Conversation already exists');
       return;
     }
 
     try {
-      const response = await axios.post('http://localhost:3000/conversations', {
-        receiverId: receiverId,
-      });
-      setConversations((prev) => [...prev, response.data.conversation]);
+      await axios.post(
+        'http://localhost:3000/conversations',
+        {
+          receiverId: receiverId,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      fetchConversations();
       setError('');
     } catch (error) {
-      console.log(error);
       if (error.response && error.response.status === 409) {
         setError('Conversation already exists');
       } else {
@@ -76,29 +102,35 @@ export default function UsersDisplay({
     }
   };
 
+  const handleCreateConversations = async (receiverId) => {
+    await createConversation(receiverId);
+  };
+
   if (!users || users.length === 0) return null;
 
   return (
-    <Container>
-      {error && <p>{error}</p>}
-      <UserList>
-        {users.map((user) => (
-          <UserItem
-            key={user._id}
-            onClick={() => {
-              createConversation(user._id);
-            }}
-          >
-            <Avatar
-              src={
-                user.avatarUrl || '../../src/assets/images/defaultAvatar.webp'
-              }
-            />
-            <li>{user.username}</li>
-          </UserItem>
-        ))}
-      </UserList>
-    </Container>
+    <>
+      <Container>
+        {error && <p>{error}</p>}
+        <UserList>
+          {users.map((user) => (
+            <UserItem
+              key={user._id}
+              onClick={() => {
+                handleCreateConversations(user._id);
+              }}
+            >
+              <Avatar
+                src={
+                  user.avatarUrl || '../../src/assets/images/defaultAvatar.webp'
+                }
+              />
+              <li>{user.username}</li>
+            </UserItem>
+          ))}
+        </UserList>
+      </Container>
+    </>
   );
 }
 

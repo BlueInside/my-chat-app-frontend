@@ -4,12 +4,14 @@ const mockConversation = [
     lastMessage: 'last message', // MongoDB-style ObjectId for the last message
     participants: [
       {
-        _id: '62225e00f4761e8926d632a0',
+        _id: 'user1',
+        id: 'user1',
         username: 'johndoe', // Example participant's username
         avatarUrl: 'http://example.com/path/to/avatar.jpg', // URL to the avatar image
       },
       {
-        _id: '62225e10f4761e8926d632a1',
+        _id: 'user2',
+        id: 'user2',
         username: 'janedoe',
         avatarUrl: 'http://example.com/path/to/another-avatar.jpg',
       },

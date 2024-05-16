@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import LoginPrompt from '../components/LoginPrompt';
+import LoginPrompt from '../../components/LoginPrompt';
 
 describe('RegistrationPrompt component', () => {
   it('Renders RegistrationPrompt correctly', () => {

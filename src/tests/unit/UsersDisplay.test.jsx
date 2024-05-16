@@ -1,6 +1,6 @@
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
-import UsersDisplay from '../components/UsersDisplay';
+import UsersDisplay from '../../components/UsersDisplay';
 import { render, screen, waitFor } from '@testing-library/react';
 import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
@@ -13,6 +13,24 @@ describe('UsersDisplay component', () => {
   beforeEach(() => {
     mockAxios.resetHandlers();
     mockAxios.reset();
+
+    const mockLocalStorage = {
+      getItem: vi.fn().mockImplementation((key) => {
+        if (key === 'token') return 'mock-token';
+        return null;
+      }),
+    };
+    globalThis.localStorage = mockLocalStorage;
+
+    mockAxios.onGet('http://localhost:3000/conversations').reply(200, {
+      conversations: [
+        {
+          id: '123',
+          participants: ['user1', 'user2'],
+          participantsInfo: [{ username: 'User1' }, { username: 'User2' }],
+        },
+      ],
+    });
   });
 
   let mockUsers = [

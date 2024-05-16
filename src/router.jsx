@@ -9,6 +9,9 @@ import { registerAction } from './api/register';
 import AboutPage from './pages/AboutPage';
 import { usersLoader } from './api/users';
 import ProtectedRoute from './components/ProtectedRoute';
+import ConversationView from './components/ConversationView';
+import { conversationDetailLoader } from './api/conversation';
+import axios from 'axios';
 
 const routesConfig = [
   {
@@ -40,10 +43,24 @@ const routesConfig = [
       </ProtectedRoute>
     ),
     loader: usersLoader,
+    children: [
+      {
+        path: '/chat/:conversationId',
+        element: <ConversationView />,
+        loader: conversationDetailLoader,
+      },
+    ],
   },
   {
-    path: '/chat/:conversationId',
-    element: <ChatPage />,
+    path: '/messages',
+    action: async ({ request }) => {
+      const formData = await request.formData();
+      const response = await axios.post(
+        'http://localhost:3000/messages',
+        formData
+      );
+      return response.data;
+    },
   },
   {
     path: '/profile/:userId',
