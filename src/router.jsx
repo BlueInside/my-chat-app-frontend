@@ -59,6 +59,7 @@ const routesConfig = [
         'http://localhost:3000/messages',
         formData
       );
+      console.log(response);
       return response.data;
     },
   },
