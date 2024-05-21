@@ -18,10 +18,10 @@ describe('ConversationView interaction', () => {
     mockAxios.onPost('http://localhost:3000/messages').replyOnce(200, {
       message: 'Message sent successfully',
       data: {
-        id: '123',
+        _id: '123',
         text: 'Hello, world!',
         sender: 'user1',
-        receiver: 'user2',
+        receiverId: 'user2',
       },
     });
   });
@@ -34,10 +34,10 @@ describe('ConversationView interaction', () => {
         participants: [{ _id: 'user1' }, { _id: 'user2' }],
         messages: [
           {
-            id: 'msg1',
+            _id: 'msg1',
             text: 'Initial message',
             sender: 'user1',
-            receiver: 'user2',
+            receiverId: 'user2',
           },
         ],
       })
@@ -47,16 +47,16 @@ describe('ConversationView interaction', () => {
         participants: [{ _id: 'user1' }, { _id: 'user2' }],
         messages: [
           {
-            id: 'msg1',
+            _id: 'msg1',
             text: 'Initial message',
             sender: 'user1',
-            receiver: 'user2',
+            receiverId: 'user2',
           },
           {
-            id: '123',
+            _id: '123',
             text: 'Hello, world!',
             sender: 'user1',
-            receiver: 'user2',
+            receiverId: 'user2',
           }, // new message appears after post
         ],
       });
@@ -78,10 +78,10 @@ describe('ConversationView interaction', () => {
         },
         action: async () => {
           const response = await axios.post('http://localhost:3000/messages', {
-            id: '123',
+            _id: '123',
             text: 'Hello, world!',
             sender: 'user1',
-            receiver: 'user2',
+            receiverId: 'user2',
           });
           return response;
         },
@@ -90,10 +90,10 @@ describe('ConversationView interaction', () => {
         path: '/messages',
         action: async () => {
           const response = await axios.post('http://localhost:3000/messages', {
-            id: '123',
+            _id: '123',
             text: 'Hello, world!',
             sender: 'user1',
-            receiver: 'user2',
+            receiverId: 'user2',
           });
           return response.data;
         },
