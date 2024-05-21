@@ -79,9 +79,8 @@ export default function ConversationView() {
   const { user } = useAuth();
   const [messages, setMessages] = useState(conversation.messages || []);
   const receiver = conversation?.participants.find((p) => p._id !== user.id);
-
   useEffect(() => {
-    if (fetcher.data && fetcher.data.data && fetcher.data.data.id) {
+    if (fetcher.data && fetcher.data.data && fetcher.data.data._id) {
       setMessages((prev) => [...prev, fetcher.data.data]);
     }
   }, [fetcher.data]);
@@ -97,7 +96,7 @@ export default function ConversationView() {
       </UserInfoContainer>
       <MessagesWindow>
         {messages.length > 0 ? (
-          messages.map((m) => <MessageItem key={m.id}>{m.text}</MessageItem>)
+          messages.map((m) => <MessageItem key={m._id}>{m.text}</MessageItem>)
         ) : (
           <MessageItem>
             So empty, don&apos;t be shy and send a first message.
