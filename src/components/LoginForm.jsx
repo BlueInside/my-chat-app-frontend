@@ -74,6 +74,7 @@ function LoginForm() {
 
       // Get response from server
       const response = await loginAction(data);
+      console.log(response);
       if (response.error) {
         setError(response.error);
       } else {

@@ -1,16 +1,13 @@
-import axios from 'axios';
+import axiosInstance from '../utils/axiosInstance';
+
 const conversationLoader = async () => {
   const token = localStorage.getItem('token');
   if (!token) throw new Response('Authentication required', { status: 401 });
 
-  const url = 'http://localhost:3000/conversations';
+  const url = '/conversations';
 
   try {
-    const response = await axios.get(url, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await axiosInstance.get(url);
     return response.data.conversations;
   } catch (error) {
     // Response returned from server but failed
@@ -36,13 +33,8 @@ const conversationDetailLoader = async ({ params }) => {
     throw new Response('Authentication required', { status: 401 });
   }
   try {
-    const response = await axios.get(
-      `http://localhost:3000/conversations/${params.conversationId}`,
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
+    const response = await axiosInstance.get(
+      `/conversations/${params.conversationId}`
     );
     return response.data.conversation;
   } catch (error) {

@@ -1,13 +1,13 @@
-import axios from 'axios';
 import { redirect } from 'react-router-dom';
+import axiosInstance from '../utils/axiosInstance';
 
 async function registerAction({ request }) {
   try {
     const formData = await request.formData();
     let data = Object.fromEntries(formData);
-    const url = 'http://localhost:3000/authenticate/register';
+    const url = '/authenticate/register';
 
-    const response = await axios.post(url, data, {
+    const response = await axiosInstance.post(url, data, {
       signal: request.signal,
       headers: {
         'Content-Type': 'application/json',

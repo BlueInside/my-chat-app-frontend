@@ -1,17 +1,17 @@
-import axios from 'axios';
+import axiosInstance from '../utils/axiosInstance';
 
 const loginAction = async (data) => {
   try {
     if (!data) {
       return { error: 'Incorrect inputs data' };
     }
-    const url = 'http://localhost:3000/authenticate/login';
-
-    const response = await axios.post(url, data, {
+    const url = 'authenticate/login';
+    const response = await axiosInstance.post(url, data, {
       headers: {
         'Content-Type': 'application/json',
       },
     });
+
     if (response.data.token) {
       return response.data;
     } else {

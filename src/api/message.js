@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosInstance from '../utils/axiosInstance';
 
 const messageAction = async ({ request }) => {
   const token = localStorage.getItem('token');
@@ -8,15 +8,7 @@ const messageAction = async ({ request }) => {
 
   const formData = Object.fromEntries(await request.formData());
   console.log(formData);
-  const response = await axios.post(
-    'http://localhost:3000/messages',
-    formData,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  );
+  const response = await axiosInstance.post('/messages', formData);
 
   return response.data;
 };
