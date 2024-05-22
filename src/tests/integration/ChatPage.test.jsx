@@ -37,7 +37,7 @@ describe('ChatPage component', () => {
           { _id: 'user1', username: 'karol' },
           { _id: 'user2', username: 'johny' },
         ],
-        lastMessage: 'Hello there!',
+        lastMessage: { text: 'Hello there!', _id: 'msg1' },
       },
     ]);
   });

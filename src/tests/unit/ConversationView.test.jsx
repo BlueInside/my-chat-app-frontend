@@ -14,6 +14,7 @@ let mockConversation = {
     { _id: 'user1', username: 'user1', avatar: 'user1-avatar.png' },
     { _id: 'user2', username: 'user2', avatar: 'user2-avatar.png' },
   ],
+  lastMessage: { text: 'Hi, there', _id: 'msg1' },
   messages: [
     {
       receiver: 'user2',
