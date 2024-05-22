@@ -4,8 +4,16 @@ import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import axios from 'axios';
 import MockAdapter from 'axios-mock-adapter';
 import ConversationView from '../../components/ConversationView';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import { AuthContext } from '../../utils/AuthContext';
+
+const updateConversations = vi.fn();
+
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal();
+
+  return { ...actual, useOutletContext: vi.fn(() => [updateConversations]) };
+});
 
 // Mock axios
 const mockAxios = new MockAdapter(axios);
