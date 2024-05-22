@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import { AuthContext } from '../utils/AuthContext';
+const token = localStorage.getItem('token');
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -12,11 +13,12 @@ export const AuthProvider = ({ children }) => {
     const authenticateUser = async () => {
       try {
         const url = 'http://localhost:3000/authenticate/verify-token';
-        const token = localStorage.getItem('token');
         if (!token) {
+          console.log('no token found');
           return;
         }
 
+        console.log('Token found, making API call');
         const response = await axios.get(url, {
           cancelToken: source.token,
           headers: {
@@ -25,6 +27,7 @@ export const AuthProvider = ({ children }) => {
         });
 
         if (response.status === 200) {
+          console.log('Api call successful, setting user');
           const userData = { ...response.data.user, token };
           setUser(userData);
         }
@@ -44,7 +47,6 @@ export const AuthProvider = ({ children }) => {
   const login = (userData) => {
     localStorage.setItem('token', userData.token);
     const data = { ...userData.user, token: userData.token };
-    delete data.token;
     setUser(data);
   };
 
