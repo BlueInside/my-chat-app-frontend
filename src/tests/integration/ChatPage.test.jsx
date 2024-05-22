@@ -70,7 +70,6 @@ describe('ChatPage component', () => {
 
     await waitFor(() => {
       expect(screen.getByText('Conversation Details')).toBeInTheDocument();
-      console.log(window.location.pathname);
     });
   });
 });
