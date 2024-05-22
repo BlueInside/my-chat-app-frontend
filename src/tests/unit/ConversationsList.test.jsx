@@ -28,7 +28,7 @@ describe('ConversationsList component', () => {
       mockConversation[0].participants[1].username
     );
     const conversationLastMessage = screen.getByText(
-      mockConversation[0].lastMessage
+      mockConversation[0].lastMessage.text
     );
 
     expect(conversationName).toBeInTheDocument();

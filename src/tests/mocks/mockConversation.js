@@ -1,7 +1,7 @@
 const mockConversation = [
   {
     _id: '62225efef4761e8926d632b1', // MongoDB-style ObjectId
-    lastMessage: 'last message', // MongoDB-style ObjectId for the last message
+    lastMessage: {text: 'last message'}, // MongoDB-style ObjectId for the last message
     participants: [
       {
         _id: 'user1',

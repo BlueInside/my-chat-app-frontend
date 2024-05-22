@@ -24,7 +24,8 @@ const MessagesWindow = styled.ul`
 const MessageItem = styled.li`
   margin: 10px 0;
   padding: 10px;
-  background-color: white;
+  align-self: ${(props) => (props.$isSender ? 'flex-end' : 'flex-start')};
+  background-color: ${(props) => (props.$isSender ? '#daf8cb' : '#f1f0f0')};
   border-radius: 8px;
   border: 1px solid #ccc;
 `;
@@ -80,6 +81,8 @@ export default function ConversationView() {
   const [messages, setMessages] = useState(conversation.messages || []);
   const receiver = conversation?.participants.find((p) => p._id !== user.id);
 
+  console.log(conversation);
+
   useEffect(() => {
     if (conversation.messages) {
       setMessages(conversation.messages);
@@ -91,7 +94,6 @@ export default function ConversationView() {
   useEffect(() => {
     if (fetcher.data && fetcher.data.data && fetcher.data.data._id) {
       setMessages((prev) => [fetcher.data.data, ...prev]);
-      console.log(fetcher.data.data);
     }
   }, [fetcher.data]);
 
@@ -103,10 +105,14 @@ export default function ConversationView() {
           alt={`${receiver.username}'s avatar`}
         />
         <h2>{receiver.username}</h2>
-      </UserInfoContainer>
+      </UserInfoContainer>{' '}
       <MessagesWindow>
         {messages.length > 0 ? (
-          messages.map((m) => <MessageItem key={m._id}>{m.text}</MessageItem>)
+          messages.map((m) => (
+            <MessageItem key={m._id} $isSender={m.sender === user.id}>
+              {m.text}
+            </MessageItem>
+          ))
         ) : (
           <MessageItem>
             So empty, don&apos;t be shy and send a first message.
