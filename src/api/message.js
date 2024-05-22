@@ -7,21 +7,24 @@ const messageAction = async ({ request }) => {
   }
 
   const formData = Object.fromEntries(await request.formData());
-  const response = await axios.post(
-    'http://localhost:3000/messages',
-    formData,
-    {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+  if (formData.text === '' || formData.text.length === 0) {
+    return null;
+  } else {
+    const response = await axios.post(
+      'http://localhost:3000/messages',
+      formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    if (response.status === 201) {
+      const event = new CustomEvent('messageSent');
+      window.dispatchEvent(event);
     }
-  );
-
-  if (response.status === 201) {
-    const event = new CustomEvent('messageSent');
-    window.dispatchEvent(event);
+    return response.data;
   }
-  return response.data;
 };
-
 export { messageAction };
