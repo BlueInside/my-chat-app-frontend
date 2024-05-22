@@ -1,5 +1,5 @@
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
-import { beforeEach, describe, expect, it } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 import ConversationView from '../../components/ConversationView';
 import { render, screen } from '@testing-library/react';
 import { AuthContext } from '../../utils/AuthContext';
@@ -7,6 +7,14 @@ import MockAdapter from 'axios-mock-adapter';
 import axios from 'axios';
 
 const mockAxios = new MockAdapter(axios);
+
+const updateConversations = vi.fn();
+
+vi.mock('react-router-dom', async (importOriginal) => {
+  const actual = await importOriginal();
+
+  return { ...actual, useOutletContext: vi.fn(() => [updateConversations]) };
+});
 
 let mockConversation = {
   id: 'conv1',
