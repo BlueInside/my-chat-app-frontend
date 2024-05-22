@@ -134,7 +134,6 @@ export default function ConversationView() {
             id="message"
             aria-label="Type your message"
             placeholder="Type a message"
-            required
           />
           <SendButton type="submit">Send</SendButton>
         </fetcher.Form>
