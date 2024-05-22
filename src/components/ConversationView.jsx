@@ -81,8 +81,6 @@ export default function ConversationView() {
   const [messages, setMessages] = useState(conversation.messages || []);
   const receiver = conversation?.participants.find((p) => p._id !== user.id);
 
-  console.log(conversation);
-
   useEffect(() => {
     if (conversation.messages) {
       setMessages(conversation.messages);
