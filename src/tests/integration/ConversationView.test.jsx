@@ -110,6 +110,9 @@ describe('ConversationView interaction', () => {
       sendButton = screen.getByRole('button', { name: /send/i });
     });
 
+    const messages = screen.getAllByRole('listitem');
+    expect(messages).toHaveLength(1);
+
     await user.type(messageInput, 'Hello, world!');
     await user.click(sendButton);
 
@@ -118,6 +121,7 @@ describe('ConversationView interaction', () => {
         .getAllByRole('listitem')
         .map((li) => li.textContent);
       expect(messages).toContain('Hello, world!');
+      expect(messages).toHaveLength(2);
     });
   });
 });
