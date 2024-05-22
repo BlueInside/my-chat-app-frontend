@@ -36,17 +36,18 @@ function ChatPage() {
     });
   }, []);
 
+  const updateConversations = async () => {
+    conversationLoader().then((data) => setConversations(data));
+  };
+
   return (
     <ChatContainer>
       <Sidebar>
-        <SearchBar
-          setConversations={setConversations}
-          conversations={conversations}
-        />
+        <SearchBar conversations={conversations} />
         <ConversationsList conversations={conversations} />
       </Sidebar>
       <ChatArea>
-        <Outlet />
+        <Outlet context={[updateConversations]} />
       </ChatArea>
     </ChatContainer>
   );
