@@ -4,11 +4,13 @@ import SearchBar from '../components/SearchBar';
 import { useEffect, useState } from 'react';
 import { conversationLoader } from '../api/conversation';
 import { Outlet } from 'react-router-dom';
+import ChatNavbar from '../components/ChatNavbar';
+import { useAuth } from '../utils/AuthContext';
 
 const ChatContainer = styled.div`
   display: grid;
-  grid-template-columns: 300px 1fr;
-  height: 95vh;
+  grid-template-columns: 250px 1fr;
+  height: 90vh;
 `;
 
 const Sidebar = styled.div`
@@ -23,14 +25,13 @@ const ChatArea = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  height: 99%; /* Full height */
-  background-color: #f9f9f957; /* Light grey background */
+  height: 90%;
+  background-color: #f9f9f957;
 `;
 
 function ChatPage() {
   const [conversations, setConversations] = useState([]);
-
-  console.log('Chat Page: ', conversations);
+  const { logout } = useAuth();
 
   useEffect(() => {
     const loadConversations = () => {
@@ -53,18 +54,21 @@ function ChatPage() {
   }, []);
 
   return (
-    <ChatContainer>
-      <Sidebar>
-        <SearchBar
-          setConversations={setConversations}
-          conversations={conversations}
-        />
-        <ConversationsList conversations={conversations} />
-      </Sidebar>
-      <ChatArea>
-        <Outlet />
-      </ChatArea>
-    </ChatContainer>
+    <>
+      <ChatNavbar logout={logout} />
+      <ChatContainer>
+        <Sidebar>
+          <SearchBar
+            setConversations={setConversations}
+            conversations={conversations}
+          />
+          <ConversationsList conversations={conversations} />
+        </Sidebar>
+        <ChatArea>
+          <Outlet />
+        </ChatArea>
+      </ChatContainer>
+    </>
   );
 }
 
