@@ -30,10 +30,26 @@ const ChatArea = styled.div`
 function ChatPage() {
   const [conversations, setConversations] = useState([]);
 
+  console.log('Chat Page: ', conversations);
+
   useEffect(() => {
-    conversationLoader().then((data) => {
-      setConversations(data);
-    });
+    const loadConversations = () => {
+      conversationLoader().then((data) => {
+        setConversations(data);
+      });
+    };
+
+    loadConversations();
+
+    const handleNewMessage = () => {
+      loadConversations(); // Reload conversations when a message is sent
+    };
+
+    window.addEventListener('messageSent', handleNewMessage);
+
+    return () => {
+      window.removeEventListener('messageSent', handleNewMessage);
+    };
   }, []);
 
   return (
