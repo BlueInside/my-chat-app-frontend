@@ -11,7 +11,7 @@ import { usersLoader } from './api/users';
 import ProtectedRoute from './components/ProtectedRoute';
 import ConversationView from './components/ConversationView';
 import { conversationDetailLoader } from './api/conversation';
-import axios from 'axios';
+import { messageAction } from './api/message';
 
 const routesConfig = [
   {
@@ -53,15 +53,7 @@ const routesConfig = [
   },
   {
     path: '/messages',
-    action: async ({ request }) => {
-      const formData = await request.formData();
-      const response = await axios.post(
-        'http://localhost:3000/messages',
-        formData
-      );
-      console.log(response);
-      return response.data;
-    },
+    action: messageAction,
   },
   {
     path: '/profile/:userId',
