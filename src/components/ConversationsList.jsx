@@ -34,7 +34,7 @@ const LastMessage = styled.p`
 export default function ConversationsList({ conversations }) {
   const navigate = useNavigate();
   const { user } = useAuth();
-  
+  console.log(conversations);
   if (!conversations || conversations.length === 0) {
     return <p>Yours conversations will be displayed here</p>;
   }
@@ -58,7 +58,10 @@ export default function ConversationsList({ conversations }) {
             <Username>
               {otherParticipant ? otherParticipant.username : 'unknown'}
             </Username>
-            <LastMessage>{conversation.lastMessage}</LastMessage>
+            {/* Check if there's last message */}
+            {conversation?.lastMessage?.text && (
+              <LastMessage>{conversation.lastMessage.text}</LastMessage>
+            )}
           </ConversationItem>
         );
       })}
