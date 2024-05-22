@@ -94,7 +94,6 @@ export default function ConversationView() {
   useEffect(() => {
     if (fetcher.data && fetcher.data.data && fetcher.data.data._id) {
       setMessages((prev) => [fetcher.data.data, ...prev]);
-      console.log(fetcher.data.data);
     }
   }, [fetcher.data]);
 
