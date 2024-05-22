@@ -1,6 +1,6 @@
-import { useFetcher, useLoaderData } from 'react-router-dom';
+import { useFetcher, useLoaderData, useOutletContext } from 'react-router-dom';
 import { useAuth } from '../utils/AuthContext';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const ChatArea = styled.div`
@@ -76,9 +76,12 @@ const UserInfoContainer = styled.div`
 export default function ConversationView() {
   const fetcher = useFetcher();
   const conversation = useLoaderData();
+  const [updateConversations] = useOutletContext();
   const { user } = useAuth();
   const [messages, setMessages] = useState(conversation.messages || []);
   const receiver = conversation?.participants.find((p) => p._id !== user.id);
+
+  const updateConversationsRef = useRef(updateConversations);
 
   useEffect(() => {
     if (conversation.messages) {
@@ -91,7 +94,7 @@ export default function ConversationView() {
   useEffect(() => {
     if (fetcher.data && fetcher.data.data && fetcher.data.data._id) {
       setMessages((prev) => [fetcher.data.data, ...prev]);
-      console.log(fetcher.data.data);
+      updateConversationsRef.current();
     }
   }, [fetcher.data]);
 
