@@ -27,6 +27,8 @@ const MessageItem = styled.li`
   background-color: white;
   border-radius: 8px;
   border: 1px solid #ccc;
+  align-self: ${(props) => (props.$isSender ? 'flex-end' : 'flex-start')};
+  background-color: ${(props) => (props.$isSender ? '#DCF8C6' : '#EAEAEA')};
 `;
 
 const InputContainer = styled.div`
@@ -109,7 +111,11 @@ export default function ConversationView() {
       </UserInfoContainer>
       <MessagesWindow>
         {messages.length > 0 ? (
-          messages.map((m) => <MessageItem key={m._id}>{m.text}</MessageItem>)
+          messages.map((m) => (
+            <MessageItem key={m._id} $isSender={m.sender === user.id}>
+              {m.text}
+            </MessageItem>
+          ))
         ) : (
           <MessageItem>
             So empty, don&apos;t be shy and send a first message.
