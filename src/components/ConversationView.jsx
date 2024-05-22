@@ -1,6 +1,6 @@
 import { useFetcher, useLoaderData } from 'react-router-dom';
 import { useAuth } from '../utils/AuthContext';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const ChatArea = styled.div`
@@ -82,7 +82,7 @@ export default function ConversationView() {
   const { user } = useAuth();
   const [messages, setMessages] = useState(conversation.messages || []);
   const receiver = conversation?.participants.find((p) => p._id !== user.id);
-
+  const formRef = useRef(null);
   useEffect(() => {
     if (conversation.messages) {
       setMessages(conversation.messages);
@@ -94,6 +94,7 @@ export default function ConversationView() {
   useEffect(() => {
     if (fetcher.data && fetcher.data.data && fetcher.data.data._id) {
       setMessages((prev) => [fetcher.data.data, ...prev]);
+      formRef.current.reset();
     }
   }, [fetcher.data]);
 
@@ -121,6 +122,7 @@ export default function ConversationView() {
       </MessagesWindow>
       <InputContainer>
         <fetcher.Form
+          ref={formRef}
           method="post"
           action="/messages"
           style={{ display: 'flex', flex: '1' }}
