@@ -7,8 +7,9 @@ const ChatArea = styled.div`
   padding: 20px;
   display: flex;
   flex-direction: column;
-  height: 100%; /* Full height */
-  background-color: #f9f9f9; /* Light grey background */
+  height: 100%;
+  background-color: #f9f9f9;
+  justify-content: space-between;
 `;
 
 const MessagesWindow = styled.ul`
@@ -19,6 +20,7 @@ const MessagesWindow = styled.ul`
   list-style: none;
   display: flex;
   flex-direction: column-reverse; /* Newest messages at the bottom */
+  max-height: 60vh; /* Set a maximum height */
 `;
 
 const MessageItem = styled.li`
