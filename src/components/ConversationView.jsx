@@ -90,7 +90,8 @@ export default function ConversationView() {
 
   useEffect(() => {
     if (fetcher.data && fetcher.data.data && fetcher.data.data._id) {
-      setMessages((prev) => [...prev, fetcher.data.data]);
+      setMessages((prev) => [fetcher.data.data, ...prev]);
+      console.log(fetcher.data.data);
     }
   }, [fetcher.data]);
 
