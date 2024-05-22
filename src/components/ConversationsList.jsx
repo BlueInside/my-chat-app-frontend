@@ -34,7 +34,7 @@ const LastMessage = styled.p`
 export default function ConversationsList({ conversations }) {
   const navigate = useNavigate();
   const { user } = useAuth();
-  console.log(conversations);
+
   if (!conversations || conversations.length === 0) {
     return <p>Yours conversations will be displayed here</p>;
   }
