@@ -7,8 +7,6 @@ const FormContainer = styled.div`
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  max-width: 400px;
-  margin: 30px auto;
 `;
 
 const FormGroup = styled.div`
@@ -43,9 +41,13 @@ const SubmitButton = styled.button`
   background-color: #007bff;
   color: white;
   border: none;
+  width: fit-content;
   border-radius: 4px;
+  display: flex;
   cursor: pointer;
   font-size: 16px;
+  justify-content: space-evenly;
+  margin: 0 auto;
 
   &:hover {
     background-color: #0056b3;

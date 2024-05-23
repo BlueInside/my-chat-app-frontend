@@ -6,12 +6,17 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const Container = styled.div`
+  display: flex;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   max-width: 600px;
   margin: 0 auto;
+  width: 100%;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
 `;
 
 const EditButton = styled(Link)`
@@ -22,6 +27,7 @@ const EditButton = styled(Link)`
   color: white;
   text-decoration: none;
   border-radius: 4px;
+  width: fit-content;
   &:hover {
     background-color: #0056b3;
   }
