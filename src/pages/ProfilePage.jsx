@@ -1,15 +1,43 @@
 import { useLoaderData } from 'react-router-dom';
-import UserForm from '../components/UserForm';
 import UserProfileHeader from '../components/UserProfileHeader';
+import { useAuth } from '../utils/AuthContext';
+import UserInfoDisplay from '../components/UserInfoDisplay';
+import styled from 'styled-components';
+import { Link } from 'react-router-dom';
+
+const Container = styled.div`
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+`;
+
+const EditButton = styled(Link)`
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
 
 function ProfilePage() {
   const user = useLoaderData();
-
+  const { user: currentUser } = useAuth();
   return (
-    <div>
+    <Container>
       <UserProfileHeader avatarUrl={user.avatarUrl} username={user.username} />
-      <UserForm />
-    </div>
+      <UserInfoDisplay user={user} />
+      {currentUser.id === user._id && (
+        <EditButton to={'edit'}>Edit Profile</EditButton>
+      )}
+    </Container>
   );
 }
 
