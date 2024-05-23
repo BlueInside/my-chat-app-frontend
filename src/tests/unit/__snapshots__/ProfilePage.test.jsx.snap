@@ -3,55 +3,75 @@
 exports[`ProfilePage Component > Renders Profile page properly 1`] = `
 <div>
   <div>
-    <div>
+    <div
+      class="sc-gLDymS gKAwjL"
+    >
       <img
         alt="avatar"
+        class="sc-iAEzLF bRcXFJ"
         src="#"
       />
-      <p>
+      <p
+        class="sc-fsQjcA cpBBBw"
+      >
         Karol
       </p>
     </div>
-    <div>
+    <div
+      class="sc-beqWNU jFKwmJ"
+    >
       <form
         action="/"
         method="get"
+        style="display: flex; flex-direction: column; gap: 15px;"
       >
-        <div>
+        <div
+          class="sc-gueXAH gChJlI"
+        >
           <label
+            class="sc-dmqGRC dqLgEB"
             for="fullName"
           >
             Full name
           </label>
           <input
             aria-label="Full name"
+            class="sc-hLseSp kugNSb"
             id="fullName"
             name="fullName"
             type="text"
           />
         </div>
-        <div>
+        <div
+          class="sc-gueXAH gChJlI"
+        >
           <label
+            class="sc-dmqGRC dqLgEB"
             for="avatar"
           >
             Avatar
           </label>
           <input
             aria-label="Avatar"
+            class="sc-hLseSp sc-eDDOjk kugNSb bVZQeq"
             id="avatar"
             name="avatar"
             placeholder="Choose a profile picture"
             type="file"
           />
         </div>
-        <div>
+        <div
+          class="sc-gueXAH gChJlI"
+        >
           <label
+            class="sc-dmqGRC dqLgEB"
             for="dateOfBirth"
           >
             Date of Birth
           </label>
           <input
             aria-label="Date of Birth"
+            class="sc-hLseSp kugNSb"
             id="dateOfBirth"
             name="dateOfBirth"
             placeholder="Enter your date of birth"
@@ -59,6 +79,7 @@ exports[`ProfilePage Component > Renders Profile page properly 1`] = `
           />
         </div>
         <button
+          class="sc-jTrOVX gbSFKE"
           type="submit"
         >
           Submit
