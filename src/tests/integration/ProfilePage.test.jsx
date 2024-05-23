@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import ProfilePage from '../../pages/ProfilePage';
+import userEvent from '@testing-library/user-event';
 
 const mockUseAuth = vi.fn();
 vi.mock('../../utils/AuthContext', () => ({
@@ -62,5 +63,21 @@ describe('ProfilePage Component', async () => {
     });
 
     expect(editProfileButton).not.toBeInTheDocument();
+  });
+
+  it('Should redirect to edit page when user clicks on button', async () => {
+    mockUseAuth.mockReturnValue({ user: { id: 'user1' } });
+    const user = userEvent.setup();
+    render(<RouterProvider router={router} />);
+
+    const editProfileButton = screen.queryByRole('link', {
+      name: /edit profile/i,
+    });
+
+    await user.click(editProfileButton);
+
+    await waitFor(() => {
+      expect(screen.getByText('Edit profile page')).toBeInTheDocument();
+    });
   });
 });
