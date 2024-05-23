@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`ProfilePage Component > Renders Profile page properly 1`] = `
+<div>
+  <div>
+    Profile page
+  </div>
+</div>
+`;
