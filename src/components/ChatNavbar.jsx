@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { useAuth } from '../utils/AuthContext';
 
 const StyledNavbar = styled.nav`
   background: #fff;
@@ -23,12 +24,13 @@ const Logo = styled.img`
 `;
 
 function ChatNavbar({ logout }) {
+  const { user } = useAuth();
   return (
     <StyledNavbar>
       <Logo src="../../src/assets/images/icon.webp" alt="logo" />
       <StyledUl>
         <li>
-          <Link to={'profile'}>Profile</Link>
+          <Link to={`profile/${user.id}`}>Profile</Link>
         </li>
 
         <li>
