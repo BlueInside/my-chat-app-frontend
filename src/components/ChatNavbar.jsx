@@ -13,7 +13,7 @@ const StyledNavbar = styled.nav`
 
 const StyledUl = styled.ul`
   display: flex;
-  gap: 20px;
+  gap: 40px;
   flex: 1;
   justify-content: flex-end;
   list-style: none;
@@ -27,6 +27,10 @@ function ChatNavbar({ logout }) {
     <StyledNavbar>
       <Logo src="../../src/assets/images/icon.webp" alt="logo" />
       <StyledUl>
+        <li>
+          <Link to={'profile'}>Profile</Link>
+        </li>
+
         <li>
           <Link
             onClick={() => {
