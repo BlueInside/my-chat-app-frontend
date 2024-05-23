@@ -32,7 +32,7 @@ const UserProfileHeader = ({ avatarUrl, username }) => {
   return (
     <Container>
       <Avatar
-        src={avatarUrl || '../../src/assets/images/defaultAvatar.webp'}
+        src={avatarUrl || '/../src/assets/images/defaultAvatar.webp'}
         alt="avatar"
       />
       <Username>{username}</Username>
