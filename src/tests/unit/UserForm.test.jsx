@@ -17,14 +17,14 @@ describe('UserForm component', () => {
   it('Has correct form inputs', () => {
     render(<RouterProvider router={router} />);
 
-    expect(screen.getAllByLabelText('Full name')).toBeInTheDocument();
+    expect(screen.getByLabelText('Full name')).toBeInTheDocument();
 
-    expect(screen.getAllByLabelText('Avatar')).toBeInTheDocument();
+    expect(screen.getByLabelText('Avatar')).toBeInTheDocument();
     expect(
-      screen.getByPlaceholderText('Chose a profile picture')
+      screen.getByPlaceholderText('Choose a profile picture')
     ).toBeInTheDocument();
 
-    expect(screen.getAllByLabelText('Date of Birth')).toBeInTheDocument();
+    expect(screen.getByLabelText('Date of Birth')).toBeInTheDocument();
     expect(
       screen.getByPlaceholderText('Enter your date of birth')
     ).toBeInTheDocument();
