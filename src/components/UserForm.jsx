@@ -1,6 +1,6 @@
 import { useFetcher } from 'react-router-dom';
-
 import styled from 'styled-components';
+import PropTypes from 'prop-types';
 
 const FormContainer = styled.div`
   background-color: #f9f9f9;
@@ -52,7 +52,7 @@ const SubmitButton = styled.button`
   }
 `;
 
-export default function UserForm() {
+export default function UserForm({ user }) {
   const fetcher = useFetcher();
 
   return (
@@ -94,3 +94,7 @@ export default function UserForm() {
     </FormContainer>
   );
 }
+
+UserForm.propTypes = {
+  user: PropTypes.object.isRequired,
+};
