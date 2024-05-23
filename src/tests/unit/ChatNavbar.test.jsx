@@ -8,6 +8,10 @@ import {
 } from 'react-router-dom';
 import userEvent from '@testing-library/user-event';
 
+vi.mock('../../utils/AuthContext.js', () => ({
+  useAuth: vi.fn(() => ({ user: { id: 'user1' } })),
+}));
+
 describe('ChatNavbar component', () => {
   const mockLogout = vi.fn();
 
@@ -45,7 +49,7 @@ describe('ChatNavbar component', () => {
           element: <ChatNavbar />,
         },
         {
-          path: 'profile',
+          path: 'profile/:profileId',
           element: <div>I am profile page</div>,
         },
       ],
