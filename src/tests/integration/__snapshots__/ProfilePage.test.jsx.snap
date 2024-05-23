@@ -2,90 +2,115 @@
 
 exports[`ProfilePage Component > Renders Profile page properly 1`] = `
 <div>
-  <div>
+  <div
+    class="sc-iAEzLF hTJWeD"
+  >
     <div
-      class="sc-gLDymS gKAwjL"
+      class="sc-beqWNU ceBucd"
     >
       <img
         alt="avatar"
-        class="sc-iAEzLF bRcXFJ"
+        class="sc-gueXAH ivoMqK"
         src="#"
       />
       <p
-        class="sc-fsQjcA cpBBBw"
+        class="sc-dmqGRC cBaAVu"
       >
         Karol
       </p>
     </div>
     <div
-      class="sc-beqWNU jFKwmJ"
+      class="sc-hLseSp jjsWUP"
     >
-      <form
-        action="/"
-        method="get"
-        style="display: flex; flex-direction: column; gap: 15px;"
+      <div
+        class="sc-eDDOjk bBRgum"
       >
-        <div
-          class="sc-gueXAH gChJlI"
+        <span
+          class="sc-jTrOVX ha-dZIX"
         >
-          <label
-            class="sc-dmqGRC dqLgEB"
-            for="fullName"
-          >
-            Full name
-          </label>
-          <input
-            aria-label="Full name"
-            class="sc-hLseSp kugNSb"
-            id="fullName"
-            name="fullName"
-            type="text"
-          />
-        </div>
-        <div
-          class="sc-gueXAH gChJlI"
+          Username:
+        </span>
+        <span
+          class="sc-gLDymS gUZinN"
         >
-          <label
-            class="sc-dmqGRC dqLgEB"
-            for="avatar"
-          >
-            Avatar
-          </label>
-          <input
-            aria-label="Avatar"
-            class="sc-hLseSp sc-eDDOjk kugNSb bVZQeq"
-            id="avatar"
-            name="avatar"
-            placeholder="Choose a profile picture"
-            type="file"
-          />
-        </div>
-        <div
-          class="sc-gueXAH gChJlI"
+          Karol
+        </span>
+      </div>
+      <div
+        class="sc-eDDOjk bBRgum"
+      >
+        <span
+          class="sc-jTrOVX ha-dZIX"
         >
-          <label
-            class="sc-dmqGRC dqLgEB"
-            for="dateOfBirth"
-          >
-            Date of Birth
-          </label>
-          <input
-            aria-label="Date of Birth"
-            class="sc-hLseSp kugNSb"
-            id="dateOfBirth"
-            name="dateOfBirth"
-            placeholder="Enter your date of birth"
-            type="date"
-          />
-        </div>
-        <button
-          class="sc-jTrOVX gbSFKE"
-          type="submit"
+          Full Name:
+        </span>
+        <span
+          class="sc-gLDymS gUZinN"
         >
-          Submit
-        </button>
-      </form>
+          Karol Pulawski
+        </span>
+      </div>
+      <div
+        class="sc-eDDOjk bBRgum"
+      >
+        <span
+          class="sc-jTrOVX ha-dZIX"
+        >
+          Bio:
+        </span>
+        <span
+          class="sc-gLDymS gUZinN"
+        >
+          My very interesting bio
+        </span>
+      </div>
+      <div
+        class="sc-eDDOjk bBRgum"
+      >
+        <span
+          class="sc-jTrOVX ha-dZIX"
+        >
+          Role:
+        </span>
+        <span
+          class="sc-gLDymS gUZinN"
+        />
+      </div>
+      <div
+        class="sc-eDDOjk bBRgum"
+      >
+        <span
+          class="sc-jTrOVX ha-dZIX"
+        >
+          Last Active:
+        </span>
+        <span
+          class="sc-gLDymS gUZinN"
+        >
+          Invalid Date
+        </span>
+      </div>
+      <div
+        class="sc-eDDOjk bBRgum"
+      >
+        <span
+          class="sc-jTrOVX ha-dZIX"
+        >
+          Account Created:
+        </span>
+        <span
+          class="sc-gLDymS gUZinN"
+        >
+          Invalid Date
+        </span>
+      </div>
     </div>
+    <a
+      class="sc-fsQjcA jEkSsd"
+      href="/edit"
+    >
+      Edit Profile
+    </a>
   </div>
 </div>
 `;
