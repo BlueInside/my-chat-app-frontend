@@ -8,6 +8,7 @@ const Container = styled.div`
   padding: 10px 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  gap: 20px;
 `;
 
 const Avatar = styled.img`
