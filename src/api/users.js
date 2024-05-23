@@ -19,9 +19,10 @@ const userLoader = async ({ params }) => {
   if (!token) {
     throw new Response('Authentication required', { status: 401 });
   }
+
   try {
     const response = await axios.get(
-      `http://localhost:3000/users/${params.userId}`,
+      `http://localhost:3000/users/${params.profileId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
