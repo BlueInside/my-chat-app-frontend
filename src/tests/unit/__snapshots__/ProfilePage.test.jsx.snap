@@ -3,7 +3,68 @@
 exports[`ProfilePage Component > Renders Profile page properly 1`] = `
 <div>
   <div>
-    Profile page
+    <div>
+      <img
+        alt="avatar"
+        src="#"
+      />
+      <p>
+        Karol
+      </p>
+    </div>
+    <div>
+      <form
+        action="/"
+        method="get"
+      >
+        <div>
+          <label
+            for="fullName"
+          >
+            Full name
+          </label>
+          <input
+            aria-label="Full name"
+            id="fullName"
+            name="fullName"
+            type="text"
+          />
+        </div>
+        <div>
+          <label
+            for="avatar"
+          >
+            Avatar
+          </label>
+          <input
+            aria-label="Avatar"
+            id="avatar"
+            name="avatar"
+            placeholder="Choose a profile picture"
+            type="file"
+          />
+        </div>
+        <div>
+          <label
+            for="dateOfBirth"
+          >
+            Date of Birth
+          </label>
+          <input
+            aria-label="Date of Birth"
+            id="dateOfBirth"
+            name="dateOfBirth"
+            placeholder="Enter your date of birth"
+            type="date"
+          />
+        </div>
+        <button
+          type="submit"
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   </div>
 </div>
 `;
