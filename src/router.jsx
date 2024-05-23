@@ -12,7 +12,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import ConversationView from './components/ConversationView';
 import { conversationDetailLoader } from './api/conversation';
 import { messageAction } from './api/message';
-import EditProfilePage from './components/EditProfilePage';
+import EditProfilePage from './pages/EditProfilePage';
 
 const routesConfig = [
   {
@@ -58,6 +58,7 @@ const routesConfig = [
       {
         path: 'profile/:profileId/edit',
         element: <EditProfilePage />,
+        loader: userLoader,
       },
     ],
   },
