@@ -45,9 +45,13 @@ const routesConfig = [
     loader: usersLoader,
     children: [
       {
-        path: '/chat/:conversationId',
+        path: ':conversationId',
         element: <ConversationView />,
         loader: conversationDetailLoader,
+      },
+      {
+        path: 'profile',
+        element: <ProfilePage />,
       },
     ],
   },
@@ -55,10 +59,7 @@ const routesConfig = [
     path: '/messages',
     action: messageAction,
   },
-  {
-    path: '/profile/:userId',
-    element: <ProfilePage />,
-  },
+
   {
     path: '/settings',
     element: <SettingsPage />,
