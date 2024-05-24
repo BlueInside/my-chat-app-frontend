@@ -27,7 +27,9 @@ function ChatNavbar({ logout }) {
   const { user } = useAuth();
   return (
     <StyledNavbar>
-      <Logo src="../../src/assets/images/icon.webp" alt="logo" />
+      <Link to={'/'}>
+        <Logo src="../../src/assets/images/icon.webp" alt="logo" />
+      </Link>
       <StyledUl>
         <li>
           <Link to={`profile/${user.id}`}>Profile</Link>
