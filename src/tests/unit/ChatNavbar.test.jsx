@@ -23,7 +23,7 @@ describe('ChatNavbar component', () => {
     );
 
     expect(screen.getByRole('img', { name: /logo/i })).toBeInTheDocument();
-    expect(screen.getAllByRole('link')).toHaveLength(2);
+    expect(screen.getAllByRole('link')).toHaveLength(3);
   });
 
   it('Should call logout fn when clicked on logout link', async () => {
