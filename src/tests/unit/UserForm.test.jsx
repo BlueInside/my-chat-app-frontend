@@ -3,11 +3,20 @@ import { describe, expect, it } from 'vitest';
 import UserForm from '../../components/UserForm';
 import { RouterProvider, createMemoryRouter } from 'react-router-dom';
 
+const mockUser = {
+  _id: 'user1',
+  username: 'Karol',
+  fullName: 'Karol Pulawski',
+  bio: 'My very interesting bio',
+  avatarUrl: '#',
+  dateOfBirth: '1997 05 18',
+};
+
 let router = createMemoryRouter(
   [
     {
       path: '/',
-      element: <UserForm />,
+      element: <UserForm user={mockUser} />,
     },
   ],
   { initialEntries: ['/'] }
