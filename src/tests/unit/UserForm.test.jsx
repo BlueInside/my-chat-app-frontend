@@ -27,7 +27,7 @@ describe('UserForm component', () => {
     render(<RouterProvider router={router} />);
 
     expect(screen.getByLabelText('Full name')).toBeInTheDocument();
-
+    expect(screen.getByLabelText('Bio')).toBeInTheDocument();
     expect(screen.getByLabelText('Avatar')).toBeInTheDocument();
     expect(
       screen.getByPlaceholderText('Choose a profile picture')
@@ -37,5 +37,12 @@ describe('UserForm component', () => {
     expect(
       screen.getByPlaceholderText('Enter your date of birth')
     ).toBeInTheDocument();
+  });
+
+  it('Displays correct initial values', () => {
+    render(<RouterProvider router={router} />);
+
+    expect(screen.getByLabelText('Full name').value).toBe(mockUser.fullName);
+    expect(screen.getByLabelText('Bio').value).toBe(mockUser.bio);
   });
 });
