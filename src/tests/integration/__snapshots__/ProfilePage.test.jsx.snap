@@ -3,7 +3,7 @@
 exports[`ProfilePage Component > Renders Profile page properly 1`] = `
 <div>
   <div
-    class="sc-iAEzLF hsYCIS"
+    class="sc-iAEzLF ikFkrg"
   >
     <div
       class="sc-beqWNU ceBucd"
@@ -20,7 +20,7 @@ exports[`ProfilePage Component > Renders Profile page properly 1`] = `
       </p>
     </div>
     <div
-      class="sc-hLseSp jjsWUP"
+      class="sc-hLseSp cuzUdV"
     >
       <div
         class="sc-eDDOjk bBRgum"
@@ -106,7 +106,7 @@ exports[`ProfilePage Component > Renders Profile page properly 1`] = `
       </div>
     </div>
     <a
-      class="sc-fsQjcA jEkSsd"
+      class="sc-fsQjcA ldzKiz"
       href="/edit"
     >
       Edit Profile
