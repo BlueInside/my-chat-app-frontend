@@ -69,6 +69,19 @@ export default function UserForm({ user }) {
             name="fullName"
             type="text"
             aria-label="Full name"
+            placeholder="Full name"
+            defaultValue={user.fullName || ''}
+          />
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="bio">Bio</Label>
+          <FileInput
+            id="bio"
+            name="bio"
+            type="text"
+            aria-label="bio"
+            placeholder="Type some stuff about yourself"
+            defaultValue={user.bio || ''}
           />
         </FormGroup>
         <FormGroup>
@@ -89,6 +102,9 @@ export default function UserForm({ user }) {
             type="date"
             aria-label="Date of Birth"
             placeholder="Enter your date of birth"
+            defaultValue={
+              user.dateOfBirth ? user.dateOfBirth.split('T')[0] : ''
+            }
           />
         </FormGroup>
         <SubmitButton type="submit">Submit</SubmitButton>
