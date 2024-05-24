@@ -1,4 +1,4 @@
-import { useFetcher, useLoaderData } from 'react-router-dom';
+import { Link, useFetcher, useLoaderData } from 'react-router-dom';
 import { useAuth } from '../utils/AuthContext';
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
@@ -76,6 +76,18 @@ const UserInfoContainer = styled.div`
   justify-content: flex-start;
   gap: 30px;
 `;
+const StyledLink = styled(Link)`
+  width: fit-content;
+  text-decoration: none;
+  display: inline-block;
+  color: inherit;
+
+  &:hover {
+    text-decoration: underline;
+    color: #007bff;
+  }
+`;
+
 export default function ConversationView() {
   const fetcher = useFetcher();
   const conversation = useLoaderData();
@@ -100,13 +112,17 @@ export default function ConversationView() {
 
   return (
     <ChatArea>
-      <UserInfoContainer id="receiver-info">
-        <Avatar
-          src={receiver.avatar || '../../src/assets/images/defaultAvatar.webp'}
-          alt={`${receiver.username}'s avatar`}
-        />
-        <h2>{receiver.username}</h2>
-      </UserInfoContainer>{' '}
+      <StyledLink to={`/chat/profile/${receiver._id}`}>
+        <UserInfoContainer id="receiver-info">
+          <Avatar
+            src={
+              receiver.avatar || '../../src/assets/images/defaultAvatar.webp'
+            }
+            alt={`${receiver.username}'s avatar`}
+          />
+          <h2>{receiver.username}</h2>
+        </UserInfoContainer>{' '}
+      </StyledLink>
       <MessagesWindow>
         {messages.length > 0 ? (
           messages.map((m) => (
