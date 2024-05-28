@@ -22,7 +22,7 @@ export default function EditProfilePage() {
 
   return (
     <Container>
-      <UserProfileHeader avatarUrl={user.avatarUrl} username={user.username} />
+      <UserProfileHeader avatarUrl={user?.avatarUrl} username={user.username} />
       <UserForm user={user} />
     </Container>
   );
