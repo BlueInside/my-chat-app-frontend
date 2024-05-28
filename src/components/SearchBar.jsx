@@ -21,25 +21,25 @@ const StyledForm = styled(Form)`
 const SearchContainer = styled.div`
   display: flex;
   position: relative;
+  margin-top: 30px;
   gap: 10px;
   flex-direction: column;
 `;
 
 const SearchInput = styled.input`
   width: 100%;
-  padding: 12px 20px; // Generous padding for a larger touch area
-  margin: 8px 0; // Adds some space around the input
-  box-sizing: border-box; // Makes sure paddings and borders are included in the width
+  padding: 12px 20px; 
+  margin: 8px 0; 
+  box-sizing: border-box; 
+  border: 2px solid #ccc; 
+  border-radius: 8px; 
 
-  border: 2px solid #ccc; // Subtle border
-  border-radius: 8px; // Rounded corners
-
-  font-size: 16px; // Larger text for better readability
-  color: #333; // Dark color for text
+  font-size: 16px; 
+  color: #333; 
 
   &:focus {
-    border-color: #007bff; // Highlight color when the input is focused
-    outline: none; // Removes the default focus outline
+    border-color: #007bff; 
+    outline: none; 
   }
 `;
 

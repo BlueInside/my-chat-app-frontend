@@ -6,7 +6,7 @@ describe('UserProfileHeader component', () => {
   it('Should display user username and show user avatar', async () => {
     render(<UserProfileHeader username={'Karol'} avatarUrl={'#'} />);
 
-    const avatar = screen.getByRole('img', { name: 'avatar' });
+    const avatar = screen.getByRole('img', { name: /avatar/i });
 
     expect(avatar).toBeInTheDocument();
     expect(avatar).toHaveAttribute('src', '#');

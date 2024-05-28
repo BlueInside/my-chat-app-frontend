@@ -10,6 +10,10 @@ const StyledNavbar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media (max-width: 728px) {
+    display: none;
+  }
 `;
 
 const StyledUl = styled.ul`
@@ -19,6 +23,7 @@ const StyledUl = styled.ul`
   justify-content: flex-end;
   list-style: none;
 `;
+
 const Logo = styled.img`
   height: 40px;
 `;
@@ -34,7 +39,6 @@ function ChatNavbar({ logout }) {
         <li>
           <Link to={`profile/${user.id}`}>Profile</Link>
         </li>
-
         <li>
           <Link
             onClick={() => {

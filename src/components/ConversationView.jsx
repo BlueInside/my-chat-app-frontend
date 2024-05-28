@@ -10,6 +10,10 @@ const ChatArea = styled.div`
   height: 100%;
   background-color: #f9f9f9;
   justify-content: space-between;
+
+  @media (max-width: 728px) {
+    padding: 10px;
+  }
 `;
 
 const MessagesWindow = styled.ul`
@@ -21,6 +25,10 @@ const MessagesWindow = styled.ul`
   display: flex;
   flex-direction: column-reverse; /* Newest messages at the bottom */
   max-height: 60vh; /* Set a maximum height */
+
+  @media (max-width: 728px) {
+    max-height: 50vh;
+  }
 `;
 
 const MessageItem = styled.li`
@@ -30,6 +38,11 @@ const MessageItem = styled.li`
   background-color: ${(props) => (props.$isSender ? '#daf8cb' : '#f1f0f0')};
   border-radius: 8px;
   border: 1px solid #ccc;
+
+  @media (max-width: 728px) {
+    padding: 8px;
+    margin: 5px 0;
+  }
 `;
 
 const InputContainer = styled.div`
@@ -37,6 +50,10 @@ const InputContainer = styled.div`
   padding: 10px;
   background-color: #fff; /* White background */
   border-top: 1px solid #eee; /* Light border for separation */
+
+  @media (max-width: 728px) {
+    padding: 5px;
+  }
 `;
 
 const MessageInput = styled.input`
@@ -46,6 +63,11 @@ const MessageInput = styled.input`
   border: 2px solid #ccc;
   border-radius: 8px;
   outline: none;
+
+  @media (max-width: 728px) {
+    padding: 8px;
+    margin-right: 5px;
+  }
 `;
 
 const SendButton = styled.button`
@@ -59,6 +81,10 @@ const SendButton = styled.button`
   &:hover {
     background-color: #0056b3;
   }
+
+  @media (max-width: 728px) {
+    padding: 8px 15px;
+  }
 `;
 
 const Avatar = styled.img`
@@ -68,6 +94,11 @@ const Avatar = styled.img`
   object-fit: cover;
   border: 2px solid #d3d3d3;
   background-color: #f0f0f0;
+
+  @media (max-width: 728px) {
+    width: 30px;
+    height: 30px;
+  }
 `;
 
 const UserInfoContainer = styled.div`
@@ -75,7 +106,12 @@ const UserInfoContainer = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 30px;
+
+  @media (max-width: 728px) {
+    gap: 10px;
+  }
 `;
+
 const StyledLink = styled(Link)`
   width: fit-content;
   text-decoration: none;
@@ -95,6 +131,7 @@ export default function ConversationView() {
   const [messages, setMessages] = useState(conversation.messages || []);
   const receiver = conversation?.participants.find((p) => p._id !== user.id);
   const formRef = useRef(null);
+
   useEffect(() => {
     if (conversation.messages) {
       setMessages(conversation.messages);

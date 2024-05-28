@@ -6,18 +6,18 @@ exports[`ProfilePage Component > Renders Profile page properly 1`] = `
     class="sc-iAEzLF ikFkrg"
   >
     <div
-      class="sc-beqWNU ceBucd"
+      class="sc-beqWNU gxhSWl"
     >
       <img
-        alt="avatar"
-        class="sc-gueXAH ivoMqK"
+        alt="Karol's avatar"
+        class="sc-gueXAH idjUxu"
         src="#"
       />
-      <p
-        class="sc-dmqGRC cBaAVu"
+      <h2
+        class="sc-dmqGRC fImmhv"
       >
         Karol
-      </p>
+      </h2>
     </div>
     <div
       class="sc-hLseSp cuzUdV"

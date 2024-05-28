@@ -1,45 +1,52 @@
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const Container = styled.div`
+const HeaderContainer = styled.div`
   display: flex;
   align-items: center;
-  background-color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  gap: 20px;
+  margin-bottom: 20px;
+
+  @media (max-width: 728px) {
+    flex-direction: column;
+    margin-bottom: 15px;
+  }
 `;
 
 const Avatar = styled.img`
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   object-fit: cover;
-  border: 2px solid #d3d3d3;
-  background-color: #f0f0f0;
-  margin-right: 15px;
+  margin-right: 20px;
+
+  @media (max-width: 728px) {
+    width: 80px;
+    height: 80px;
+    margin-right: 0;
+    margin-bottom: 10px;
+  }
 `;
 
-const Username = styled.p`
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin: 0;
+const Username = styled.h2`
+  font-size: 1.5em;
+
+  @media (max-width: 728px) {
+    font-size: 1.2em;
+    text-align: center;
+  }
 `;
 
-const UserProfileHeader = ({ avatarUrl, username }) => {
+export default function UserProfileHeader({ avatarUrl, username }) {
   return (
-    <Container>
+    <HeaderContainer>
       <Avatar
-        src={avatarUrl || '/../src/assets/images/defaultAvatar.webp'}
-        alt="avatar"
+        src={avatarUrl || '../../src/assets/images/defaultAvatar.webp'}
+        alt={`${username}'s avatar`}
       />
       <Username>{username}</Username>
-    </Container>
+    </HeaderContainer>
   );
-};
-export default UserProfileHeader;
+}
 
 UserProfileHeader.propTypes = {
   avatarUrl: PropTypes.string,

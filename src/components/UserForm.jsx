@@ -1,4 +1,4 @@
-import { Form } from 'react-router-dom';
+import { Form, useActionData } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
@@ -8,6 +8,10 @@ const FormContainer = styled.div`
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 728px) {
+    padding: 5px;
+  }
 `;
 
 const FormGroup = styled.div`
@@ -62,6 +66,7 @@ const SubmitButton = styled.button`
 
 export default function UserForm({ user }) {
   const [fileError, setFileError] = useState('');
+  const error = useActionData();
 
   const handleFileChange = (event) => {
     const file = event.target.files[0];
@@ -73,18 +78,20 @@ export default function UserForm({ user }) {
       );
       event.target.value = '';
     } else {
-      setFileError(''); // Clear error if file is valid
+      setFileError('');
     }
   };
 
   return (
     <FormContainer>
+      {error && <ErrorMessage>{error.message}</ErrorMessage>}
       <Form
         method="put"
         encType="multipart/form-data"
         style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}
       >
         <FormGroup>
+          <input type="hidden" name="role" value={user.role} />
           <Label htmlFor="fullName">Full name</Label>
           <Input
             id="fullName"

@@ -1,7 +1,6 @@
 import UserProfileHeader from '../components/UserProfileHeader';
 import styled from 'styled-components';
 import UserForm from '../components/UserForm';
-
 import { useLoaderData } from 'react-router-dom';
 
 const Container = styled.div`
@@ -15,6 +14,13 @@ const Container = styled.div`
   flex-direction: column;
   height: 100%;
   justify-content: space-evenly;
+  margin: 0 auto;
+  @media (max-width: 728px) {
+    padding: 10px;
+    box-shadow: none;
+    border-radius: 0;
+    height: auto;
+  }
 `;
 
 export default function EditProfilePage() {
