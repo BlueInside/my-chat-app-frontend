@@ -23,7 +23,6 @@ async function registerAction({ request }) {
     }
   } catch (error) {
     if (error.response) {
-      console.log(error);
       if (error.response.status === 401) {
         return { error: 'Incorrect username or password' };
       } else if (
