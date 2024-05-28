@@ -4,12 +4,17 @@ import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const ChatArea = styled.div`
-  padding: 20px;
   display: flex;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
   flex-direction: column;
   height: 100%;
-  background-color: #f9f9f9;
-  justify-content: space-between;
+  justify-content: center;
 
   @media (max-width: 728px) {
     padding: 10px;
