@@ -7,7 +7,6 @@ import {
 import UsersDisplay from './UsersDisplay';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import ThreeDotsLoader from '../styles/ThreeDotsLoader.styles';
-
 import styled from 'styled-components';
 import debounce from '../utils/debounce';
 import PropTypes from 'prop-types';
@@ -28,18 +27,18 @@ const SearchContainer = styled.div`
 
 const SearchInput = styled.input`
   width: 100%;
-  padding: 12px 20px; 
-  margin: 8px 0; 
-  box-sizing: border-box; 
-  border: 2px solid #ccc; 
-  border-radius: 8px; 
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 8px;
 
-  font-size: 16px; 
-  color: #333; 
+  font-size: 16px;
+  color: #333;
 
   &:focus {
-    border-color: #007bff; 
-    outline: none; 
+    border-color: #007bff;
+    outline: none;
   }
 `;
 
