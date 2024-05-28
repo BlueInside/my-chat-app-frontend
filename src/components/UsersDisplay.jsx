@@ -119,7 +119,8 @@ export default function UsersDisplay({
           >
             <Avatar
               src={
-                user.avatarUrl || '../../src/assets/images/defaultAvatar.webp'
+                user.avatarUrl ||
+                'https://res.cloudinary.com/dhjzutfu9/image/upload/v1716908636/defaultAvatar_lxatx0.webp'
               }
             />
             <p>{user.username}</p>

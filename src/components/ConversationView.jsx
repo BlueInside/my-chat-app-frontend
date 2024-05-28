@@ -158,7 +158,7 @@ export default function ConversationView() {
         <UserInfoContainer id="receiver-info">
           <Avatar
             src={
-              receiver.avatarUrl || '../../src/assets/images/defaultAvatar.webp'
+              receiver.avatarUrl || 'https://res.cloudinary.com/dhjzutfu9/image/upload/v1716908636/defaultAvatar_lxatx0.webp'
             }
             alt={`${receiver.username}'s avatar`}
           />

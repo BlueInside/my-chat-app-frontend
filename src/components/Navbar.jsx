@@ -29,7 +29,10 @@ const Logo = styled.img`
 function Navbar() {
   return (
     <StyledNavbar>
-      <Logo src="../../src/assets/images/icon.webp" alt="logo" />
+      <Logo
+        src="https://res.cloudinary.com/dhjzutfu9/image/upload/v1716908636/icon_s9qjtp.webp"
+        alt="logo"
+      />
       <StyledUl>
         <li>
           <Link to="/">Home</Link>

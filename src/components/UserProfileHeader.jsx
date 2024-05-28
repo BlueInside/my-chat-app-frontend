@@ -40,7 +40,7 @@ export default function UserProfileHeader({ avatarUrl, username }) {
   return (
     <HeaderContainer>
       <Avatar
-        src={avatarUrl || '../../src/assets/images/defaultAvatar.webp'}
+        src={avatarUrl || 'https://res.cloudinary.com/dhjzutfu9/image/upload/v1716908636/defaultAvatar_lxatx0.webp'}
         alt={`${username}'s avatar`}
       />
       <Username>{username}</Username>
