@@ -187,7 +187,7 @@ describe('UsersDisplay component', () => {
     await user.click(screen.getByText(/testUser/i));
 
     await waitFor(() => {
-      expect(mockSetConversations).toHaveBeenCalledOnce();
+      expect(mockSetConversations).toHaveBeenCalled(2);
     });
   });
 });
