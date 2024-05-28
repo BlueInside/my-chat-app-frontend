@@ -116,7 +116,7 @@ export default function ConversationView() {
         <UserInfoContainer id="receiver-info">
           <Avatar
             src={
-              receiver.avatar || '../../src/assets/images/defaultAvatar.webp'
+              receiver.avatarUrl || '../../src/assets/images/defaultAvatar.webp'
             }
             alt={`${receiver.username}'s avatar`}
           />
