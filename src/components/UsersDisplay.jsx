@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import axios from 'axios';
-import { useState } from 'react';
 import { conversationLoader } from '../api/conversation';
 
 const Container = styled.div`
@@ -9,7 +8,6 @@ const Container = styled.div`
   border-radius: 5px;
   overflow: hidden;
   position: absolute;
-  border-radius: 10px;
   width: 100%;
   top: 65px;
 `;
@@ -18,18 +16,19 @@ const UserList = styled.ul`
   padding: 0;
   margin: 0;
   list-style: none;
-  max-height: 200px; // Adjust based on your preference to show 5 items
-  overflow-y: scroll; // Enables vertical scrolling
-  border-top: 1px solid #d3d3d3; // Adds a subtle border at the top
+  max-height: 200px; /* Adjust based on your preference to show 5 items */
+  overflow-y: scroll; /* Enables vertical scrolling */
+  border-top: 1px solid #d3d3d3; /* Adds a subtle border at the top */
 `;
 
-const UserItem = styled.div`
+const UserItem = styled.li`
+  /* Changed from div to li for semantic correctness */
   display: flex;
   align-items: center;
   justify-content: space-around;
   padding: 10px 15px;
   background-color: #f0f0f0;
-  border-bottom: 1px solid #d3d3d3; // Adds a border between items
+  border-bottom: 1px solid #d3d3d3; /* Adds a border between items */
   cursor: pointer;
   transition: background-color 0.3s;
 
@@ -51,29 +50,27 @@ export default function UsersDisplay({
   users,
   conversations,
   setConversations,
+  setError,
 }) {
-  const [error, setError] = useState('');
-
-  function fetchConversations() {
-    conversationLoader().then((data) => {
+  async function fetchConversations() {
+    try {
+      const data = await conversationLoader();
       setConversations(data);
-    });
+    } catch (error) {
+      console.error('Error fetching conversations:', error);
+    }
   }
 
   const createConversation = async (receiverId) => {
     const token = localStorage.getItem('token');
 
-    await fetchConversations();
+    await fetchConversations(); /* Added await to ensure fetchConversations completes before the check */
 
     if (
-      conversations.some(
-        (
-          conversation // outer.some iterates over each conversation
-        ) =>
-          conversation.participants.some(
-            // inner some check each participant in array to see if id matches the receiver id
-            (participant) => participant._id === receiverId
-          )
+      conversations.some((conversation) =>
+        conversation.participants.some(
+          (participant) => participant._id === receiverId
+        )
       )
     ) {
       setError('Conversation already exists');
@@ -84,7 +81,7 @@ export default function UsersDisplay({
       await axios.post(
         'http://localhost:3000/conversations',
         {
-          receiverId: receiverId,
+          receiverId,
         },
         {
           headers: {
@@ -111,28 +108,25 @@ export default function UsersDisplay({
   if (!users || users.length === 0) return null;
 
   return (
-    <>
-      <Container>
-        {error && <p>{error}</p>}
-        <UserList>
-          {users.map((user) => (
-            <UserItem
-              key={user._id}
-              onClick={() => {
-                handleCreateConversations(user._id);
-              }}
-            >
-              <Avatar
-                src={
-                  user.avatarUrl || '../../src/assets/images/defaultAvatar.webp'
-                }
-              />
-              <li>{user.username}</li>
-            </UserItem>
-          ))}
-        </UserList>
-      </Container>
-    </>
+    <Container>
+      <UserList>
+        {users.map((user) => (
+          <UserItem
+            key={user._id}
+            onClick={() => {
+              handleCreateConversations(user._id);
+            }}
+          >
+            <Avatar
+              src={
+                user.avatarUrl || '../../src/assets/images/defaultAvatar.webp'
+              }
+            />
+            <p>{user.username}</p>
+          </UserItem>
+        ))}
+      </UserList>
+    </Container>
   );
 }
 
@@ -142,7 +136,8 @@ UsersDisplay.propTypes = {
       _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
       username: PropTypes.string.isRequired,
     })
-  ),
+  ).isRequired,
   conversations: PropTypes.array,
   setConversations: PropTypes.func,
+  setError: PropTypes.func.isRequired,
 };

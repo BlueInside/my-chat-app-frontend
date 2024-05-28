@@ -11,6 +11,15 @@ import debounce from '../utils/debounce';
 import PropTypes from 'prop-types';
 import UsersDisplay from './UsersDisplay';
 
+const ErrorMessage = styled.p`
+  color: red;
+  background-color: #ffe0e0;
+  border: 1px solid red;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+`;
+
 const StyledForm = styled(Form)`
   display: flex;
   gap: 10px;
@@ -47,6 +56,7 @@ export default function SearchBar({ conversations, setConversations }) {
   const navigation = useNavigation();
   const [isFocused, setIsFocused] = useState(false);
   const [searchQuery, setSearchQuery] = useState(q || '');
+  const [error, setError] = useState('');
   const submit = useSubmit();
 
   const formRef = useRef(null);
@@ -70,6 +80,15 @@ export default function SearchBar({ conversations, setConversations }) {
     }
   }, [searchQuery, debouncedSubmit]);
 
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => {
+        setError('');
+      }, 3000); // Hide the error message after 3 seconds
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
   return (
     <SearchContainer>
       <StyledForm id="search-form" role="search" ref={formRef}>
@@ -89,7 +108,7 @@ export default function SearchBar({ conversations, setConversations }) {
           onBlur={() => {
             setTimeout(() => {
               setIsFocused(false);
-            }, 150); // Delay by 50ms so it's possible to click on user and fire click handler
+            }, 150); // Delay by 150ms so it's possible to click on user and fire click handler
           }}
         />
         {searching && <ThreeDotsLoader />}
@@ -99,8 +118,10 @@ export default function SearchBar({ conversations, setConversations }) {
           setConversations={setConversations}
           conversations={conversations}
           users={users}
+          setError={setError}
         />
       )}
+      {error && <ErrorMessage>{error}</ErrorMessage>}
     </SearchContainer>
   );
 }
