@@ -15,12 +15,15 @@ const StyledFooter = styled.footer`
 
 function Footer() {
   return (
-    <StyledFooter>
-      © 2023 Karol Pulawski |{' '}
-      <a href="https://github.com/BlueInside">
-        <FaGithub size="2em" />
-      </a>
-    </StyledFooter>
+    <>
+      <div style={{ height: '60px' }}></div>
+      <StyledFooter>
+        © 2023 Karol Pulawski |{' '}
+        <a href="https://github.com/BlueInside">
+          <FaGithub size="2em" />
+        </a>
+      </StyledFooter>
+    </>
   );
 }
 
