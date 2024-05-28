@@ -7,28 +7,28 @@ const ConversationContainer = styled.ul`
   list-style: none;
   margin: 0;
   padding: 0;
-  overflow-y: auto; // Allows scrolling within the list if it's too long
+  overflow-y: auto;
 `;
 
 const ConversationItem = styled.li`
-  border-bottom: 1px solid #ccc; // Adds a subtle separator between items
-  padding: 10px; // Padding inside each list item
-  cursor: pointer; // Indicates that an item is clickable
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  cursor: pointer;
 
   &:hover {
-    background-color: #f5f5f5; // Light grey background on hover
+    background-color: #f5f5f5;
   }
 `;
 
 const Username = styled.p`
-  font-weight: bold; // Makes the username stand out
-  margin: 0; // Removes default margin
+  font-weight: bold;
+  margin: 0;
 `;
 
 const LastMessage = styled.p`
-  color: #666; // Grey text for the last message
-  margin: 0; // Removes default margin
-  font-size: 0.9em; // Slightly smaller font size for the message
+  color: #666;
+  margin: 0;
+  font-size: 0.9em;
 `;
 
 export default function ConversationsList({ conversations }) {
