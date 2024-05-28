@@ -26,7 +26,10 @@ async function registerAction({ request }) {
       console.log(error);
       if (error.response.status === 401) {
         return { error: 'Incorrect username or password' };
-      } else if (error.response.data && error.response.data.code === 11000) {
+      } else if (
+        error.response.data.message &&
+        /E11000/i.test(error.response.data.message)
+      ) {
         return { error: 'Username already exists, please choose another one' };
       } else {
         return { error: 'An error occurred during register' };
