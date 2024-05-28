@@ -23,14 +23,13 @@ const userLoader = async ({ params }) => {
 
   try {
     const response = await axios.get(
-      `http://localhost:3000/users/${params.profileId}`,
+      `https://my-chat-app-production-7100.up.railway.app/users/${params.profileId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
     );
-    console.log('User Loader: ', response.data);
     return response.data;
   } catch (error) {
     console.error('Error fetching user details:', error);
@@ -67,7 +66,7 @@ const editUserAction = async ({ params, request }) => {
 
   try {
     const response = await axios.put(
-      `http://localhost:3000/users/${params.profileId}`,
+      `https://my-chat-app-production-7100.up.railway.app/users/${params.profileId}`,
       formData,
       {
         headers: {
@@ -75,7 +74,6 @@ const editUserAction = async ({ params, request }) => {
         },
       }
     );
-    console.log('Edit user Action ', response.data);
     return redirect(`/chat/profile/${params.profileId}`);
   } catch (error) {
     console.error('Error fetching user details:', error);

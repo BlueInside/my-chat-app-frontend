@@ -11,7 +11,8 @@ export const AuthProvider = ({ children }) => {
 
     const authenticateUser = async () => {
       try {
-        const url = 'http://localhost:3000/authenticate/verify-token';
+        const url =
+          'https://my-chat-app-production-7100.up.railway.app/authenticate/verify-token';
         const token = localStorage.getItem('token');
         if (!token) {
           return;

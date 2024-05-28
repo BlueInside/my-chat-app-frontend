@@ -79,7 +79,7 @@ export default function UsersDisplay({
 
     try {
       await axios.post(
-        'http://localhost:3000/conversations',
+        'https://my-chat-app-production-7100.up.railway.app/conversations',
         {
           receiverId,
         },

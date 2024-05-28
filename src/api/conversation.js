@@ -3,7 +3,8 @@ const conversationLoader = async () => {
   const token = localStorage.getItem('token');
   if (!token) throw new Response('Authentication required', { status: 401 });
 
-  const url = 'http://localhost:3000/conversations';
+  const url =
+    'https://my-chat-app-production-7100.up.railway.app/conversations';
 
   try {
     const response = await axios.get(url, {
@@ -37,7 +38,7 @@ const conversationDetailLoader = async ({ params }) => {
   }
   try {
     const response = await axios.get(
-      `http://localhost:3000/conversations/${params.conversationId}`,
+      `https://my-chat-app-production-7100.up.railway.app/${params.conversationId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

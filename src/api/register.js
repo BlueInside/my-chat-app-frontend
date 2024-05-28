@@ -5,7 +5,8 @@ async function registerAction({ request }) {
   try {
     const formData = await request.formData();
     let data = Object.fromEntries(formData);
-    const url = 'http://localhost:3000/authenticate/register';
+    const url =
+      'https://my-chat-app-production-7100.up.railway.app/authenticate/register';
 
     const response = await axios.post(url, data, {
       signal: request.signal,
