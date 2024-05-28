@@ -22,17 +22,14 @@ async function registerAction({ request }) {
       return { error: 'No token received' };
     }
   } catch (error) {
-    if (error.response?.data?.errors) {
-      // Return validation errors
-      return { errors: error.response.data.errors };
-    }
-
     if (error.response) {
-      console.error('Server responded with:', error.response.status);
-      console.error('Response data:', error.response.data);
-      return { error: error.response.data.message };
-    } else if (error.response.data && error.response.data.code === 11000) {
-      return { error: 'Username already exists, please choose another one' };
+      if (error.response.status === 401) {
+        return { error: 'Incorrect username or password' };
+      } else if (error.response.data && error.response.data.code === 11000) {
+        return { error: 'Username already exists, please choose another one' };
+      } else {
+        return { error: 'An error occurred during login' };
+      }
     } else if (error.request) {
       console.error('No response received');
       return {
@@ -40,8 +37,10 @@ async function registerAction({ request }) {
           'Network error or server did not respond, please try again later',
       };
     } else {
-      console.error('Error setting up request:', error.message);
-      return { error: error.message };
+      console.error('Unexpected error:', error);
+      return {
+        error: 'An unexpected error occurred, please try again later',
+      };
     }
   }
 }
