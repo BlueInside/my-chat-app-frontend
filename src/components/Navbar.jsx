@@ -9,6 +9,10 @@ const StyledNavbar = styled.nav`
   justify-content: space-between;
   align-items: center;
   margin-bottom: 100px;
+
+  @media (max-width: 720px) {
+    margin-bottom: 10px;
+  }
 `;
 
 const StyledUl = styled.ul`
