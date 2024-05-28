@@ -23,12 +23,13 @@ async function registerAction({ request }) {
     }
   } catch (error) {
     if (error.response) {
+      console.log(error);
       if (error.response.status === 401) {
         return { error: 'Incorrect username or password' };
       } else if (error.response.data && error.response.data.code === 11000) {
         return { error: 'Username already exists, please choose another one' };
       } else {
-        return { error: 'An error occurred during login' };
+        return { error: 'An error occurred during register' };
       }
     } else if (error.request) {
       console.error('No response received');
