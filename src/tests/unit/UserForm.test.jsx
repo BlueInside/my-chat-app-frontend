@@ -75,7 +75,7 @@ describe('UserForm component', () => {
     await user.upload(fileInput, file);
 
     const fileInputError = screen.queryByText(
-      'Unsupported file type. Please select an image (JPEG, PNG, GIF).'
+      'Unsupported file type. Please select an image (JPEG, PNG, GIF, WEBP).'
     );
 
     expect(fileInput.files[0].name).toBe('test.png');
@@ -96,7 +96,7 @@ describe('UserForm component', () => {
     await user.upload(fileInput, unsupportedFile);
 
     const fileInputError = screen.getByText(
-      'Unsupported file type. Please select an image (JPEG, PNG, GIF).'
+      'Unsupported file type. Please select an image (JPEG, PNG, GIF, WEBP).'
     );
 
     expect(fileInputError).toBeInTheDocument();
