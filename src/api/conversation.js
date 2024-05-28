@@ -38,7 +38,7 @@ const conversationDetailLoader = async ({ params }) => {
   }
   try {
     const response = await axios.get(
-      `https://my-chat-app-production-7100.up.railway.app/${params.conversationId}`,
+      `https://my-chat-app-production-7100.up.railway.app/conversations/${params.conversationId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
