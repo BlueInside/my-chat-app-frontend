@@ -63,6 +63,8 @@ export default function UsersDisplay({
   const createConversation = async (receiverId) => {
     const token = localStorage.getItem('token');
 
+    await fetchConversations();
+
     if (
       conversations.some(
         (
@@ -90,7 +92,7 @@ export default function UsersDisplay({
           },
         }
       );
-      fetchConversations();
+      await fetchConversations();
       setError('');
     } catch (error) {
       if (error.response && error.response.status === 409) {
