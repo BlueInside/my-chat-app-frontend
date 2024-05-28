@@ -7,7 +7,7 @@ import SettingsPage from './pages/SettingsPage';
 import FeaturesPage from './pages/FeaturesPage';
 import { registerAction } from './api/register';
 import AboutPage from './pages/AboutPage';
-import { userLoader, usersLoader } from './api/users';
+import { editUserAction, userLoader, usersLoader } from './api/users';
 import ProtectedRoute from './components/ProtectedRoute';
 import ConversationView from './components/ConversationView';
 import { conversationDetailLoader } from './api/conversation';
@@ -59,6 +59,7 @@ const routesConfig = [
         path: 'profile/:profileId/edit',
         element: <EditProfilePage />,
         loader: userLoader,
+        action: editUserAction,
       },
     ],
   },
