@@ -31,6 +31,8 @@ async function registerAction({ request }) {
       console.error('Server responded with:', error.response.status);
       console.error('Response data:', error.response.data);
       return { error: error.response.data.message };
+    } else if (error.response.data && error.response.data.code === 11000) {
+      return { error: 'Username already exists, please choose another one' };
     } else if (error.request) {
       console.error('No response received');
       return {
