@@ -13,11 +13,13 @@ import ConversationView from './components/ConversationView';
 import { conversationDetailLoader } from './api/conversation';
 import { messageAction } from './api/message';
 import EditProfilePage from './pages/EditProfilePage';
+import ErrorElement from './components/ErrorElement';
 
 const routesConfig = [
   {
     path: '/',
     element: <HomePage />,
+    errorElement: <ErrorElement />,
   },
   {
     path: '/features',
@@ -44,11 +46,13 @@ const routesConfig = [
       </ProtectedRoute>
     ),
     loader: usersLoader,
+    errorElement: <ErrorElement />,
     children: [
       {
         path: ':conversationId',
         element: <ConversationView />,
         loader: conversationDetailLoader,
+        errorElement: <ErrorElement />,
       },
       {
         path: 'profile/:profileId',
