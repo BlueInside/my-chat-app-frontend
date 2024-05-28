@@ -4,12 +4,12 @@ import {
   useNavigation,
   useSubmit,
 } from 'react-router-dom';
-import UsersDisplay from './UsersDisplay';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import ThreeDotsLoader from '../styles/ThreeDotsLoader.styles';
 import styled from 'styled-components';
 import debounce from '../utils/debounce';
 import PropTypes from 'prop-types';
+import UsersDisplay from './UsersDisplay';
 
 const StyledForm = styled(Form)`
   display: flex;

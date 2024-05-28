@@ -3,12 +3,12 @@ import styled from 'styled-components';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import ConversationsList from '../components/ConversationsList';
-import SearchBar from '../components/SearchBar';
 import { conversationLoader } from '../api/conversation';
 import { Outlet } from 'react-router-dom';
 import ChatNavbar from '../components/ChatNavbar';
 import { useAuth } from '../utils/AuthContext';
 import { Link } from 'react-router-dom';
+import SearchBar from '../components/SearchBar';
 
 const ChatContainer = styled.div`
   display: grid;
@@ -23,9 +23,9 @@ const ChatContainer = styled.div`
 const Sidebar = styled.div`
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #ccc; 
-  padding: 20px; 
-  overflow-y: auto; 
+  border-right: 1px solid #ccc;
+  padding: 20px;
+  overflow-y: auto;
   position: relative;
 
   @media (max-width: 728px) {
