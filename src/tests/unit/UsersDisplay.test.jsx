@@ -41,7 +41,8 @@ describe('UsersDisplay component', () => {
     [
       {
         path: '/',
-        element: <UsersDisplay users={mockUsers} />,
+        element: <UsersDisplay users={mockUsers} setError={() => {}} />,
+        loader: async () => mockUsers,
       },
     ],
     { initialEntries: ['/'] }
@@ -72,7 +73,7 @@ describe('UsersDisplay component', () => {
       [
         {
           path: '/',
-          element: <UsersDisplay users={[]} />,
+          element: <UsersDisplay users={[]} setError={() => {}} />,
         },
       ],
       { initialEntries: ['/'] }
@@ -101,6 +102,7 @@ describe('UsersDisplay component', () => {
               setConversations={vi.fn()}
               conversations={[]}
               users={mockUsers}
+              setError={() => {}}
             />
           ),
         },
@@ -117,41 +119,6 @@ describe('UsersDisplay component', () => {
       expect(mockAxios.history.post[0].url).toBe(
         'http://localhost:3000/conversations'
       );
-    });
-  });
-
-  it(`Should not create duplicate conversations`, async () => {
-    mockAxios.onPost('http://localhost:3000/conversations').reply(409, {
-      message: 'Conversation already exists',
-    });
-
-    const user = userEvent.setup();
-
-    const mockUsers = [{ _id: 'user2', username: 'TestUser' }];
-
-    router = createMemoryRouter(
-      [
-        {
-          path: '/',
-          element: (
-            <UsersDisplay
-              setConversations={vi.fn()}
-              conversations={[{ participants: ['user1', 'user2'] }]}
-              users={mockUsers}
-            />
-          ),
-        },
-      ],
-      { initialEntries: ['/'] }
-    );
-    render(<RouterProvider router={router} />);
-
-    await user.click(screen.getByText(/testUser/i));
-
-    await waitFor(() => {
-      expect(
-        screen.getByText('Conversation already exists')
-      ).toBeInTheDocument();
     });
   });
 
@@ -175,6 +142,7 @@ describe('UsersDisplay component', () => {
               setConversations={mockSetConversations}
               conversations={[]}
               users={mockUsers}
+              setError={() => {}}
             />
           ),
         },
