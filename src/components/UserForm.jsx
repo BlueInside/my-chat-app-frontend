@@ -1,6 +1,7 @@
-import { useFetcher } from 'react-router-dom';
+import { Form } from 'react-router-dom';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
 
 const FormContainer = styled.div`
   background-color: #f9f9f9;
@@ -36,6 +37,11 @@ const FileInput = styled(Input)`
   padding: 5px;
 `;
 
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 12px;
+`;
+
 const SubmitButton = styled.button`
   padding: 10px 20px;
   background-color: #007bff;
@@ -55,11 +61,27 @@ const SubmitButton = styled.button`
 `;
 
 export default function UserForm({ user }) {
-  const fetcher = useFetcher();
+  const [fileError, setFileError] = useState('');
+
+  const handleFileChange = (event) => {
+    const file = event.target.files[0];
+    const validTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/webp'];
+
+    if (file && !validTypes.includes(file.type)) {
+      setFileError(
+        'Unsupported file type. Please select an image (JPEG, PNG, GIF, WEBP).'
+      );
+      event.target.value = '';
+    } else {
+      setFileError(''); // Clear error if file is valid
+    }
+  };
 
   return (
     <FormContainer>
-      <fetcher.Form
+      <Form
+        method="put"
+        encType="multipart/form-data"
         style={{ display: 'flex', flexDirection: 'column', gap: '15px' }}
       >
         <FormGroup>
@@ -85,12 +107,14 @@ export default function UserForm({ user }) {
           />
         </FormGroup>
         <FormGroup>
+          {fileError && <ErrorMessage>{fileError}</ErrorMessage>}
           <Label htmlFor="avatar">Avatar</Label>
           <FileInput
             id="avatar"
             name="avatar"
             type="file"
             aria-label="Avatar"
+            onChange={handleFileChange}
             placeholder="Choose a profile picture"
           />
         </FormGroup>
@@ -108,7 +132,7 @@ export default function UserForm({ user }) {
           />
         </FormGroup>
         <SubmitButton type="submit">Submit</SubmitButton>
-      </fetcher.Form>
+      </Form>
     </FormContainer>
   );
 }
