@@ -5,8 +5,7 @@ async function registerAction({ request }) {
   try {
     const formData = await request.formData();
     let data = Object.fromEntries(formData);
-    const url =
-      'https://my-chat-app-production-7100.up.railway.app/authenticate/register';
+    const url = 'http://localhost:3000/authenticate/register';
 
     const response = await axios.post(url, data, {
       signal: request.signal,
@@ -30,8 +29,14 @@ async function registerAction({ request }) {
         /E11000/i.test(error.response.data.message)
       ) {
         return { error: 'Username already exists, please choose another one' };
+      } else if (error.response.data.errors) {
+        return {
+          errors: error.response.data.errors,
+        };
       } else {
-        return { error: 'An error occurred during register' };
+        return {
+          error: 'An error occurred during register please try again later.',
+        };
       }
     } else if (error.request) {
       console.error('No response received');
