@@ -79,7 +79,7 @@ export default function UsersDisplay({
 
     try {
       await axios.post(
-        'https://my-chat-app-production-7100.up.railway.app/conversations',
+        'https://my-chat-app-production-01c1.up.railway.app/conversations',
         {
           receiverId,
         },
@@ -134,10 +134,10 @@ export default function UsersDisplay({
 UsersDisplay.propTypes = {
   users: PropTypes.arrayOf(
     PropTypes.shape({
-      _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-      username: PropTypes.string.isRequired,
+      _id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      username: PropTypes.string,
     })
-  ).isRequired,
+  ),
   conversations: PropTypes.array,
   setConversations: PropTypes.func,
   setError: PropTypes.func.isRequired,

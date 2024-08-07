@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     const authenticateUser = async () => {
       try {
         const url =
-          'https://my-chat-app-production-7100.up.railway.app/authenticate/verify-token';
+          'https://my-chat-app-production-01c1.up.railway.app/authenticate/verify-token';
         const token = localStorage.getItem('token');
         if (!token) {
           return;

@@ -5,8 +5,7 @@ const loginAction = async (data) => {
     if (!data) {
       return { error: 'Incorrect inputs data' };
     }
-    const url =
-      'https://my-chat-app-production-7100.up.railway.app/authenticate/login';
+    const url = 'https://my-chat-app-production-01c1.up.railway.app/authenticate/login';
 
     const response = await axios.post(url, data, {
       headers: {

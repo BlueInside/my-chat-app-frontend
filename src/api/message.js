@@ -11,7 +11,7 @@ const messageAction = async ({ request }) => {
     return null;
   } else {
     const response = await axios.post(
-      'https://my-chat-app-production-7100.up.railway.app/messages',
+      'https://my-chat-app-production-01c1.up.railway.app/messages',
       formData,
       {
         headers: {

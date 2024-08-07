@@ -5,12 +5,9 @@ const usersLoader = async ({ request }) => {
   try {
     const url = new URL(request.url);
     const q = url.searchParams.get('q');
-    const response = await axios.get(
-      `https://my-chat-app-production-7100.up.railway.app/users`,
-      {
-        params: { q: q },
-      }
-    );
+    const response = await axios.get(`https://my-chat-app-production-01c1.up.railway.app/users`, {
+      params: { q: q },
+    });
     return { users: response.data.users, q };
   } catch (error) {
     console.error('Failed to fetch users', error);
@@ -26,7 +23,7 @@ const userLoader = async ({ params }) => {
 
   try {
     const response = await axios.get(
-      `https://my-chat-app-production-7100.up.railway.app/users/${params.profileId}`,
+      `https://my-chat-app-production-01c1.up.railway.app/users/${params.profileId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -68,8 +65,8 @@ const editUserAction = async ({ params, request }) => {
   let formData = await request.formData();
 
   try {
-    const response = await axios.put(
-      `https://my-chat-app-production-7100.up.railway.app/users/${params.profileId}`,
+    axios.put(
+      `https://my-chat-app-production-01c1.up.railway.app/users/${params.profileId}`,
       formData,
       {
         headers: {
