@@ -55,12 +55,16 @@ describe('RegisterForm component', () => {
   });
 
   it('displays error message on invalid login', async () => {
-    mock.onPost('http://localhost:3000/authenticate/register').reply(400, {
-      errors: [
-        { msg: 'username must be at least 5 characters long' },
-        { msg: 'Password must be at least 8 characters long' },
-      ],
-    });
+    mock
+      .onPost(
+        'https://my-chat-app-production-01c1.up.railway.app/authenticate/register'
+      )
+      .reply(400, {
+        errors: [
+          { msg: 'username must be at least 5 characters long' },
+          { msg: 'Password must be at least 8 characters long' },
+        ],
+      });
     const user = userEvent.setup();
 
     render(

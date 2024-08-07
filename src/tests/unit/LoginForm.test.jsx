@@ -39,10 +39,14 @@ describe('LoginForm component', () => {
     const user = userEvent.setup();
     const loginMock = vi.fn();
 
-    mock.onPost('http://localhost:3000/authenticate/login').reply(200, {
-      user: { username: 'fakeUser' },
-      token: 'fake-token',
-    });
+    mock
+      .onPost(
+        'https://my-chat-app-production-01c1.up.railway.app/authenticate/login'
+      )
+      .reply(200, {
+        user: { username: 'fakeUser' },
+        token: 'fake-token',
+      });
 
     render(
       <AuthContext.Provider
@@ -94,7 +98,11 @@ describe('LoginForm component', () => {
 
   it('displays error message on invalid login', async () => {
     const user = userEvent.setup();
-    mock.onPost('http://localhost:3000/authenticate/login').reply(400);
+    mock
+      .onPost(
+        'https://my-chat-app-production-01c1.up.railway.app/authenticate/login'
+      )
+      .reply(400);
     render(
       <RouterProvider router={router}>
         <LoginForm />

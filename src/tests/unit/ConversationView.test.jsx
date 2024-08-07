@@ -57,7 +57,7 @@ describe('ConversationView component', () => {
     mockAxios.restore();
 
     // Mock the sendMessage API endpoint
-    mockAxios.onPost('http://localhost:3000/messages').reply(201, {
+    mockAxios.onPost('https://my-chat-app-production-01c1.up.railway.app/messages').reply(201, {
       data: {
         participants: [
           { _id: 'user1', username: 'karol', avatarUrl: '#' },

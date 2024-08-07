@@ -22,15 +22,17 @@ describe('UsersDisplay component', () => {
     };
     globalThis.localStorage = mockLocalStorage;
 
-    mockAxios.onGet('http://localhost:3000/conversations').reply(200, {
-      conversations: [
-        {
-          id: '123',
-          participants: ['user1', 'user2'],
-          participantsInfo: [{ username: 'User1' }, { username: 'User2' }],
-        },
-      ],
-    });
+    mockAxios
+      .onGet('https://my-chat-app-production-01c1.up.railway.app/conversations')
+      .reply(200, {
+        conversations: [
+          {
+            id: '123',
+            participants: ['user1', 'user2'],
+            participantsInfo: [{ username: 'User1' }, { username: 'User2' }],
+          },
+        ],
+      });
   });
 
   let mockUsers = [
@@ -58,7 +60,9 @@ describe('UsersDisplay component', () => {
       expect(u).toBe(mockUsers[i].username);
     });
     mockAxios
-      .onGet('http://localhost:3000/users', { params: { q: 'jo' } })
+      .onGet('https://my-chat-app-production-01c1.up.railway.app/users', {
+        params: { q: 'jo' },
+      })
       .reply(200, {
         users: [
           { id: 1, username: 'john' },
@@ -85,9 +89,13 @@ describe('UsersDisplay component', () => {
   });
 
   it('Creates or fetches a conversation when a user item is clicked', async () => {
-    mockAxios.onPost('http://localhost:3000/conversations').reply(200, {
-      conversation: { id: '123', participants: ['user1', 'user2'] },
-    });
+    mockAxios
+      .onPost(
+        'https://my-chat-app-production-01c1.up.railway.app/conversations'
+      )
+      .reply(200, {
+        conversation: { id: '123', participants: ['user1', 'user2'] },
+      });
 
     const user = userEvent.setup();
 
@@ -117,7 +125,7 @@ describe('UsersDisplay component', () => {
     await waitFor(() => {
       expect(mockAxios.history.post.length).toBe(1);
       expect(mockAxios.history.post[0].url).toBe(
-        'http://localhost:3000/conversations'
+        'https://my-chat-app-production-01c1.up.railway.app/conversations'
       );
     });
   });
@@ -125,9 +133,13 @@ describe('UsersDisplay component', () => {
   it('Should call setConversation when successfully created', async () => {
     const mockSetConversations = vi.fn();
 
-    mockAxios.onPost('http://localhost:3000/conversations').reply(200, {
-      conversation: { id: '123', participants: ['user1', 'user2'] },
-    });
+    mockAxios
+      .onPost(
+        'https://my-chat-app-production-01c1.up.railway.app/conversations'
+      )
+      .reply(200, {
+        conversation: { id: '123', participants: ['user1', 'user2'] },
+      });
 
     const user = userEvent.setup();
 

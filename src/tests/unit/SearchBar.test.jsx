@@ -14,7 +14,9 @@ describe('SearchBar component', () => {
     mockAxios.resetHandlers();
     mockAxios.onAny().reply(404); // Catch-all to prevent unhandled request errors
     mockAxios
-      .onGet('http://localhost:3000/users', { params: { q: 'jo' } })
+      .onGet('https://my-chat-app-production-01c1.up.railway.app/users', {
+        params: { q: 'jo' },
+      })
       .reply(200, {
         users: [
           { id: 1, username: 'john' },
